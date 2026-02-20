@@ -6,7 +6,7 @@ You are GitHub Copilot (Agent Mode) running inside VS Code. Your job is to produ
 Create a complete, reproducible flow for this sequence:
 
 1) **POST** to:
-   https://n8n.objectedge.ai/webhook-test/analyze_jira_issue  
+   https://n8n.objectedge.ai/webhook/analyze_jira_issue  
    with JSON body:
    {
      "jira_id": "{JIRA_ID}"

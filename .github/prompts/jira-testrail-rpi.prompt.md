@@ -10,20 +10,25 @@ Use these files as authoritative requirements:
 
 ## TASK
 1) Read the RPI docs above and verify the implementation matches them.
-2) Wire the TestRail MCP adapter to real MCP tools available in THIS session:
-   - Find the exact tool names (for example: get_case, get_cases, add_case, get_project, get_projects, add_section).
-   - Update src/jira-to-testrail/testrail/testrailMcpClient.js accordingly.
-   - Ensure findProject, findOrCreateSection, and addCase use MCP tools.
-   - If dedupe is supported, implement it using title + references; otherwise log a warning and continue.
-3) Run the parser tests automatically:
-   - npm run test:parser
-4) Run the CLI automatically with a sample Jira ID:
-   - npm run jira:testrail -- --jira-id DTSYS-1234
+2) Run the CLI automatically using the Jira ID provided with the slash command to call n8n and write the response file.
+   - The user will pass a Jira ID like QAT-114 alongside the slash command. Use that exact value.
+   - Example: npm run jira:testrail -- --jira-id QAT-114
+4) Verify the n8n response file was written:
+   - Locate the newest file at data/n8n/{JIRA_ID}/{timestamp}/response.txt (or N8N_OUTPUT_DIR override).
+   - If the file is missing, stop and report the error.
+4) After the CLI saves the n8n response file, read it and create TestRail cases directly using MCP tools.
+   - Use the mapping rules in docs/rpi/01-research.md.
+   - Use IDs from src/jira-to-testrail/types.js (DEFAULTS.sectionId, DEFAULTS.typeId).
+   - Pass type_id=DEFAULTS.typeId when creating cases.
+   - Always include custom_steps_separated built from parsed steps (action -> content, expected -> expected).
+   - Only use a single "Execute scenario" step when no explicit steps are provided in the text.
+   - Always set references to the Jira ID.
+   - Return created case links and summary.
 
 ## EXECUTION RULES
 - You MUST run the terminal commands; do not ask the user to run them.
 - Do not log secrets or full raw responses; log counts and IDs only.
-- If MCP tool names are unknown, list available TestRail MCP tools and select the correct ones, then wire the adapter.
+- If MCP tool names are unknown, list available TestRail MCP tools and select the correct ones for direct use.
 - If any command fails, report the error and continue where possible.
 
 ## OUTPUT FORMAT

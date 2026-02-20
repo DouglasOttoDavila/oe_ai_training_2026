@@ -4,7 +4,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const postAnalyzeJiraIssue = async (jiraId, options = {}) => {
   const url = options.n8nWebhookUrl || DEFAULTS.n8nWebhookUrl;
-  const timeoutMs = options.timeoutMs || 20000;
+  const timeoutMs = options.timeoutMs || 120000;
   const retries = options.retries ?? 2;
   const logger = options.logger;
 
@@ -36,12 +36,31 @@ const postAnalyzeJiraIssue = async (jiraId, options = {}) => {
         throw new Error(`n8n responded with status ${response.status}`);
       }
 
-      const data = await response.json();
-      if (!Array.isArray(data)) {
-        throw new Error("n8n response is not an array");
+      const contentType = response.headers.get("content-type") || "";
+      const raw = await response.text();
+      let data = raw;
+
+      if (contentType.includes("application/json")) {
+        try {
+          data = JSON.parse(raw);
+        } catch (parseError) {
+          data = raw;
+        }
       }
 
-      return data;
+      if (Array.isArray(data)) {
+        return data;
+      }
+
+      if (typeof data === "string") {
+        return data;
+      }
+
+      if (data && typeof data.output === "string") {
+        return data;
+      }
+
+      throw new Error("n8n response is unsupported; expected text or JSON array");
     } catch (error) {
       lastError = error;
       if (logger) {

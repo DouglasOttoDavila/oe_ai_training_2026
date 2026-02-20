@@ -1,7 +1,7 @@
+const path = require("path");
+const fs = require("fs/promises");
 const { DEFAULTS } = require("./types");
 const { postAnalyzeJiraIssue } = require("./n8n/n8nClient");
-const { parseN8nOutputs } = require("./parsers/testcaseParser");
-const { createTestrailMcpClient } = require("./testrail/testrailMcpClient");
 
 const createLogger = () => {
   const log = (level, payload) => {
@@ -21,79 +21,66 @@ const createLogger = () => {
   };
 };
 
+const normalizeN8nOutput = (output) => {
+  if (typeof output === "string") {
+    return output;
+  }
+
+  if (Array.isArray(output)) {
+    const parts = output.map((item) => {
+      if (typeof item === "string") {
+        return item;
+      }
+      if (item && typeof item.output === "string") {
+        return item.output;
+      }
+      return "";
+    }).filter(Boolean);
+
+    return parts.join("\n\n---\n\n");
+  }
+
+  if (output && typeof output.output === "string") {
+    return output.output;
+  }
+
+  return "";
+};
+
+const writeN8nResponseFile = async (outputDir, jiraId, content) => {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const dir = path.join(outputDir, jiraId, timestamp);
+  await fs.mkdir(dir, { recursive: true });
+  const filePath = path.join(dir, "response.txt");
+  await fs.writeFile(filePath, content, "utf8");
+  return filePath;
+};
+
 const runJiraToTestrail = async (options) => {
   const logger = options.logger || createLogger();
   const jiraId = options.jiraId;
-  const dedupe = options.dedupe === true;
-
   const n8nWebhookUrl = options.n8nWebhookUrl || process.env.N8N_WEBHOOK_URL || DEFAULTS.n8nWebhookUrl;
-  const projectId = Number(options.projectId || process.env.TESTRAIL_PROJECT_ID || DEFAULTS.projectId);
-  const sectionName = options.sectionName || process.env.TESTRAIL_SECTION_NAME || DEFAULTS.sectionName;
-  const templateName = options.templateName || process.env.TESTRAIL_TEMPLATE_NAME || DEFAULTS.templateName;
-  const typeName = options.typeName || process.env.TESTRAIL_TYPE_NAME || DEFAULTS.typeName;
-  const label = options.label || process.env.TESTRAIL_LABEL || DEFAULTS.label;
+  const outputDir = options.outputDir || process.env.N8N_OUTPUT_DIR || "data/n8n";
 
   const n8nOutput = await postAnalyzeJiraIssue(jiraId, {
     n8nWebhookUrl,
     logger
   });
 
-  const parsed = parseN8nOutputs(n8nOutput, { logger });
-  if (parsed.errors.length > 0) {
-    logger.warn({ message: "Parsing errors detected", errors: parsed.errors.length });
+  const normalized = normalizeN8nOutput(n8nOutput);
+  if (!normalized.trim()) {
+    throw new Error("n8n response was empty");
   }
 
-  if (parsed.cases.length === 0) {
-    throw new Error("No test cases parsed from n8n response");
-  }
+  const filePath = await writeN8nResponseFile(outputDir, jiraId, normalized);
+  logger.info({
+    message: "Saved n8n response",
+    jiraId,
+    filePath,
+    length: normalized.length
+  });
 
-  const testrailClient = createTestrailMcpClient({ logger });
-
-  if (dedupe) {
-    const dedupeCheck = await testrailClient.findCasesByTitleAndReference();
-    if (!dedupeCheck.supported) {
-      logger.warn({
-        message: "Dedupe requested but not supported by MCP adapter"
-      });
-    }
-  }
-  await testrailClient.findProject(projectId);
-  const sectionId = await testrailClient.findOrCreateSection(projectId, sectionName);
-
-  let created = 0;
-  let failed = 0;
-  let skipped = 0;
-
-  for (const testCase of parsed.cases) {
-    const casePayload = {
-      title: testCase.title,
-      preconditions: testCase.preconditions,
-      testData: testCase.testData,
-      steps: testCase.steps,
-      references: jiraId,
-      labels: [label],
-      type: typeName,
-      template: templateName,
-      description: testCase.description
-    };
-
-    try {
-      await testrailClient.addCase(projectId, sectionId, casePayload);
-      created += 1;
-    } catch (error) {
-      failed += 1;
-      logger.error({
-        message: "Failed to create TestRail case",
-        title: testCase.title,
-        error: error instanceof Error ? error.message : String(error)
-      });
-    }
-  }
-
-  const summary = { created, failed, skipped, total: parsed.cases.length };
-  logger.info({ message: "Run summary", ...summary });
-
-  return summary;
+  return { filePath, length: normalized.length };
 };
 
 module.exports = {

@@ -7,8 +7,7 @@
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
     "test:debug": "playwright test --debug",
-    "jira:testrail": "node src/jira-to-testrail/cli.js",
-    "test:parser": "node --test src/jira-to-testrail/parsers/testcaseParser.test.js"
+    "jira:testrail": "node src/jira-to-testrail/cli.js"
   },
   "keywords": [],
   "author": "",

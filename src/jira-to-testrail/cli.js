@@ -38,16 +38,16 @@ const main = async () => {
     process.exit(1);
   }
 
+  if (args.dedupe) {
+    logger.warn({ message: "--dedupe is ignored in file-only mode" });
+  }
+
   try {
-    const summary = await runJiraToTestrail({
+    await runJiraToTestrail({
       jiraId: args.jiraId,
       dedupe: args.dedupe,
       logger
     });
-
-    if (summary.failed > 0) {
-      process.exit(1);
-    }
   } catch (error) {
     logger.error({
       message: "Run failed",
