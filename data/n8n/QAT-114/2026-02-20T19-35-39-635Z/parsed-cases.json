@@ -1,0 +1,390 @@
+[
+  {
+    "title": "Verify 'Services' Menu Item in Global Navigation",
+    "preconditions": "A visitor is on any page of the Object Edge website where the global top navigation is present.",
+    "references": "QAT-114, AC1, FR9",
+    "custom_steps_separated": [
+      {
+        "content": "Locate the global top navigation bar.",
+        "expected": "The global top navigation bar is visible at the top of the page."
+      },
+      {
+        "content": "Identify a menu item labeled \"Services\" within the global top navigation.",
+        "expected": "A menu item precisely labeled \"Services\" is present in the global top navigation."
+      },
+      {
+        "content": "Interact with the \"Services\" menu item (e.g., hover over or click).",
+        "expected": "The \"Services\" menu item is interactive and displays a dropdown menu."
+      }
+    ]
+  },
+  {
+    "title": "Verify 'Digital Transformation' in 'Services' Dropdown",
+    "preconditions": "A visitor is on any page of the Object Edge website. The \"Services\" dropdown menu is open.",
+    "references": "QAT-114, AC1, FR10",
+    "custom_steps_separated": [
+      {
+        "content": "Visually confirm the \"Services\" dropdown menu is expanded and visible.",
+        "expected": "The dropdown menu associated with \"Services\" is clearly displayed."
+      },
+      {
+        "content": "Within the open \"Services\" dropdown, locate an item labeled \"Digital Transformation\".",
+        "expected": "A menu item explicitly labeled \"Digital Transformation\" is present and visible within the \"Services\" dropdown."
+      },
+      {
+        "content": "Observe the \"Digital Transformation\" menu item.",
+        "expected": "The \"Digital Transformation\" menu item is clickable and its text is clearly legible."
+      }
+    ]
+  },
+  {
+    "title": "Verify Navigation to Digital Transformation Page from Dropdown",
+    "preconditions": "A visitor is on any page of the Object Edge website. The \"Services\" dropdown is open, and \"Digital Transformation\" is visible and clickable.",
+    "references": "QAT-114, AC2, FR2, FR5, FR11, AC15, FR29",
+    "custom_steps_separated": [
+      {
+        "content": "Click on the \"Digital Transformation\" link within the \"Services\" dropdown.",
+        "expected": "The browser initiates navigation away from the current page."
+      },
+      {
+        "content": "Observe the page that loads.",
+        "expected": "The \"Digital Transformation\" service page loads completely and successfully."
+      },
+      {
+        "content": "Verify the page URL displayed in the browser's address bar.",
+        "expected": "The URL is `/services/digital-transformation-consulting`."
+      }
+    ]
+  },
+  {
+    "title": "Verify Digital Transformation Page Loads Without Errors",
+    "preconditions": "A visitor has navigated to the \"Digital Transformation\" service page (e.g., via the Services dropdown or direct URL).",
+    "references": "QAT-114, AC2, FR11",
+    "custom_steps_separated": [
+      {
+        "content": "Observe the page content and layout upon loading.",
+        "expected": "All page elements (text, images, interactive components) are rendered correctly. No broken elements, missing images, layout shifts, or placeholder content are visible."
+      },
+      {
+        "content": "Open the browser's developer console (e.g., F12).",
+        "expected": "No critical errors (e.g., JavaScript errors, 404 resource not found errors, console warnings indicating broken functionality) are displayed in the console upon page load."
+      }
+    ]
+  },
+  {
+    "title": "Verify Page H1 Title is 'Digital Transformation Consulting'",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC3, FR12, FR13",
+    "custom_steps_separated": [
+      {
+        "content": "Locate the primary heading (H1) element on the page.",
+        "expected": "A single H1 element is present and prominently displayed as the main title of the page's content."
+      },
+      {
+        "content": "Read the text content of the H1 heading.",
+        "expected": "The H1 heading text is exactly \"Digital Transformation Consulting\"."
+      },
+      {
+        "content": "(If applicable) Verify the H1 title consistency with other service titles on the site.",
+        "expected": "The H1 title \"Digital Transformation Consulting\" is consistent with how the service is named and presented in other areas of the site (e.g., within internal links or service listings)."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Introductory Summary Below H1",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. The H1 title is visible.",
+    "references": "QAT-114, AC4, FR14",
+    "custom_steps_separated": [
+      {
+        "content": "Scroll down directly below the H1 heading.",
+        "expected": "An introductory summary text block is present immediately below the H1 title."
+      },
+      {
+        "content": "Review the content of the introductory summary.",
+        "expected": "The summary describes Object Edge’s digital transformation practice (e.g., a data-driven consultancy that helps enterprises evolve their digital strategies and experience design)."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Hero Image/Banner",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC9, FR21",
+    "custom_steps_separated": [
+      {
+        "content": "Visually inspect the upper section of the page, typically near the H1 or introductory summary.",
+        "expected": "A prominent hero image or banner related to digital consulting is displayed. The image is loaded correctly and is visually appealing."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Key Transformation Pillars Section",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC5, FR15",
+    "custom_steps_separated": [
+      {
+        "content": "Scroll down the page and look for a distinct section outlining specific service offerings or competencies related to digital transformation.",
+        "expected": "A clearly defined section is present that lists key transformation pillars."
+      }
+    ]
+  },
+  {
+    "title": "Verify All Specified Transformation Pillars Are Listed",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. The section for key transformation pillars is visible.",
+    "references": "QAT-114, AC5, FR4, FR15",
+    "custom_steps_separated": [
+      {
+        "content": "Examine the list of items within the key transformation pillars section.",
+        "expected": "All of the following pillars are present and clearly listed: Strategic planning, Platform evaluations, Program leadership, Digital road mapping, Generative AI consulting, Change management, and Customized training."
+      }
+    ]
+  },
+  {
+    "title": "Verify Each Transformation Pillar Has a Business Value Description",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. The section for key transformation pillars is visible, and all pillars are listed.",
+    "references": "QAT-114, AC6, FR16",
+    "custom_steps_separated": [
+      {
+        "content": "For each listed transformation pillar (e.g., Strategic planning, Platform evaluations, etc.), check for an accompanying text description.",
+        "expected": "Each transformation pillar has a short description associated with it."
+      },
+      {
+        "content": "Read the content of each description.",
+        "expected": "Each description explains the business value of that specific transformation pillar."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of 'What Is Digital Transformation?' Explainer Block",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC7, FR17",
+    "custom_steps_separated": [
+      {
+        "content": "Scroll through the page content and look for a dedicated content block with a specific title.",
+        "expected": "A dedicated explainer block titled \"What Is Digital Transformation?\" is present on the page."
+      }
+    ]
+  },
+  {
+    "title": "Verify Explainer Block Content Reflects Modernization Concept Concisely",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. The \"What Is Digital Transformation?\" explainer block is visible.",
+    "references": "QAT-114, AC7, FR18",
+    "custom_steps_separated": [
+      {
+        "content": "Read the content within the \"What Is Digital Transformation?\" explainer block.",
+        "expected": "The content is concise and clearly reflects the concept of modernization of digital business tools and experiences."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of 'Digital Maturity Assessment' Section",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC8, FR19",
+    "custom_steps_separated": [
+      {
+        "content": "Scroll through the page content and look for a section specifically discussing digital maturity assessments.",
+        "expected": "A distinct section titled or clearly about \"Digital Maturity Assessment\" is present on the page."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Clearly Visible Main Call-to-Action Button(s)",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC12, FR24",
+    "custom_steps_separated": [
+      {
+        "content": "Scan the page for prominent call-to-action (CTA) buttons that encourage engagement (e.g., consultation, request for info).",
+        "expected": "At least one clearly visible, prominent, and interactive CTA button is present on the page, encouraging a general lead generation action."
+      }
+    ]
+  },
+  {
+    "title": "Verify Main CTA Button Labels Match Examples",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Main CTA button(s) are visible.",
+    "references": "QAT-114, AC12, FR25",
+    "custom_steps_separated": [
+      {
+        "content": "Identify the text labels of the prominent main CTA button(s).",
+        "expected": "The CTA button labels are either \"Schedule a Free Consultation\" and/or \"Request Digital Maturity Assessment\", or consistent variations that clearly convey a similar action."
+      }
+    ]
+  },
+  {
+    "title": "Verify Main CTAs Link to Valid Lead Capture Destination",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Main CTA button(s) are visible.",
+    "references": "QAT-114, AC13, FR26",
+    "custom_steps_separated": [
+      {
+        "content": "Click on each prominent main CTA button.",
+        "expected": "Clicking the CTA button(s) navigates the user to a functional contact form, a lead capture module, or a calendar booking service. The destination loads without errors."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Embedded CTA within 'Digital Maturity Assessment' Section",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. The \"Digital Maturity Assessment\" section is visible.",
+    "references": "QAT-114, AC8, FR20",
+    "custom_steps_separated": [
+      {
+        "content": "Within the \"Digital Maturity Assessment\" section, look for a call-to-action button.",
+        "expected": "An embedded CTA button is present, specifically inviting users to schedule a complimentary assessment."
+      }
+    ]
+  },
+  {
+    "title": "Verify Embedded Assessment CTA Links to Valid Destination",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. The embedded CTA within the \"Digital Maturity Assessment\" section is visible.",
+    "references": "QAT-114, AC13, FR20, FR26",
+    "custom_steps_separated": [
+      {
+        "content": "Click on the \"Schedule a complimentary assessment\" CTA button within the \"Digital Maturity Assessment\" section.",
+        "expected": "Clicking the button navigates the user to a functional contact form, a lead capture module, or a calendar booking service dedicated to scheduling assessments. The destination loads without errors."
+      }
+    ]
+  },
+  {
+    "title": "Verify Overall Consistent Styling with Main Site",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Access to the main Object Edge website for comparison is available.",
+    "references": "QAT-114, AC10, FR22",
+    "custom_steps_separated": [
+      {
+        "content": "Visually compare the fonts used on the \"Digital Transformation\" page with the fonts used on other pages of the main website.",
+        "expected": "Fonts (typefaces, sizes, weights) are consistent with the main site's established typography."
+      },
+      {
+        "content": "Visually compare the color palette (e.g., text colors, background colors, button colors) on the \"Digital Transformation\" page with the main website.",
+        "expected": "Colors are consistent with the main site's branding and color scheme."
+      },
+      {
+        "content": "Visually assess the spacing (e.g., line height, paragraph spacing, component margins/padding) and general layout on the \"Digital Transformation\" page against the main website.",
+        "expected": "Spacing and overall layout adhere to the consistent design system of the main site."
+      }
+    ]
+  },
+  {
+    "title": "Verify UX Facilitates Easy Scanning and Comprehension",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC11, FR23",
+    "custom_steps_separated": [
+      {
+        "content": "Scroll through the entire page content. Observe the layout, use of headings, bullet points, and visual breaks.",
+        "expected": "The page content is organized logically with clear headings and subheadings. Text blocks are broken up to prevent information overload, and whitespace is used effectively."
+      },
+      {
+        "content": "Read various sections of the page.",
+        "expected": "Information can be easily scanned and key points are quickly identifiable. The flow of information is intuitive, aiding comprehension."
+      }
+    ]
+  },
+  {
+    "title": "Verify Page URL is Correct",
+    "preconditions": "A visitor has navigated to the \"Digital Transformation\" service page.",
+    "references": "QAT-114, AC15, FR29",
+    "custom_steps_separated": [
+      {
+        "content": "Check the URL displayed in the browser's address bar.",
+        "expected": "The canonical URL for the page is exactly `/services/digital-transformation-consulting`."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Meta Title Tag",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Browser developer tools are accessible.",
+    "references": "QAT-114, AC14, FR27",
+    "custom_steps_separated": [
+      {
+        "content": "Open the browser's developer tools (e.g., F12) and inspect the `<head>` section of the page's HTML.",
+        "expected": "A `<title>` tag is present within the `<head>` section of the HTML."
+      },
+      {
+        "content": "Examine the content of the `<title>` tag.",
+        "expected": "The `<title>` tag contains relevant text optimized for _digital transformation consulting_ keywords."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Meta Description Tag",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Browser developer tools are accessible.",
+    "references": "QAT-114, AC14, FR27",
+    "custom_steps_separated": [
+      {
+        "content": "Open the browser's developer tools and inspect the `<head>` section of the page's HTML.",
+        "expected": "A `<meta name=\"description\">` tag is present within the `<head>` section."
+      },
+      {
+        "content": "Examine the content of the `content` attribute within the `meta name=\"description\"` tag.",
+        "expected": "The meta description content is relevant and optimized for _digital transformation consulting_ keywords."
+      }
+    ]
+  },
+  {
+    "title": "Verify Presence of Open Graph (OG) Tags",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Browser developer tools are accessible.",
+    "references": "QAT-114, AC14, FR27",
+    "custom_steps_separated": [
+      {
+        "content": "Open the browser's developer tools and inspect the `<head>` section of the page's HTML.",
+        "expected": "Essential Open Graph tags (e.g., `og:title`, `og:description`, `og:image`, `og:url`) are present within the `<head>` section."
+      },
+      {
+        "content": "Examine the content of the `content` attributes for the detected OG tags.",
+        "expected": "The OG tags contain relevant content optimized for _digital transformation consulting_ keywords and correctly reference the page and relevant imagery."
+      }
+    ]
+  },
+  {
+    "title": "Verify Analytics Tagging for CTA Clicks",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page. Browser developer tools are open with network/console monitoring for analytics events (e.g., Google Analytics debugger, network tab).",
+    "references": "QAT-114, FR30",
+    "custom_steps_separated": [
+      {
+        "content": "Identify all interactive CTA buttons on the page (e.g., main CTAs, embedded assessment CTA).",
+        "expected": "All clickable CTA buttons are clearly identifiable."
+      },
+      {
+        "content": "Click on each identified CTA button one by one.",
+        "expected": "For each click, a corresponding analytics event (e.g., a Google Analytics event) is fired and visible in the network tab or analytics debugger, capturing the click action and relevant details (e.g., CTA label, page URL)."
+      }
+    ]
+  },
+  {
+    "title": "Verify Content Reflects Object Edge's Offerings and Value Proposition",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, FR1, FR3, FR4, FR8",
+    "custom_steps_separated": [
+      {
+        "content": "Review the entire page content, including headings, introductory summary, transformation pillar descriptions, and explainer blocks.",
+        "expected": "The content is detailed, engaging, and accurately describes Object Edge’s digital transformation consulting services. It clearly communicates the value proposition for enterprise B2B and B2C clients."
+      },
+      {
+        "content": "Confirm that the content specifically covers current offerings such as strategic planning, program leadership, digital road mapping, generative AI consulting, change management, and customized training.",
+        "expected": "The page content explicitly mentions and elaborates on these current offerings."
+      }
+    ]
+  },
+  {
+    "title": "Verify Content, Visuals, and CTAs Support Lead Generation Goals",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, FR7",
+    "custom_steps_separated": [
+      {
+        "content": "Review the overall content, visuals (e.g., hero image), and placement/wording of all Call-to-Action (CTA) buttons.",
+        "expected": "The page is designed to effectively guide visitors towards lead capture actions. Content encourages inquiries, visuals support the professional offering, and CTAs are prominent and persuasive."
+      }
+    ]
+  },
+  {
+    "title": "Verify Content, Visuals, and CTAs Support Customer Understanding",
+    "preconditions": "A visitor is on the \"Digital Transformation\" service page.",
+    "references": "QAT-114, FR8",
+    "custom_steps_separated": [
+      {
+        "content": "Review the entire page content, including introductory text, pillar descriptions, and explainer blocks.",
+        "expected": "The information presented is clear, structured, and comprehensive, enabling customers to understand Object Edge's approach to digital transformation for enterprise B2B/B2C clients."
+      },
+      {
+        "content": "Assess the role of visuals and CTAs in enhancing comprehension.",
+        "expected": "Visuals are relevant and support the understanding of complex concepts. CTAs are placed logically to guide further information gathering or engagement."
+      }
+    ]
+  }
+]

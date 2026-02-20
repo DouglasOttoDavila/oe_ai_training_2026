@@ -23,6 +23,12 @@ Use this priority order:
 
 Avoid brittle selectors based on deeply nested DOM structure.
 
+Responsive and duplicate-match rules:
+- When a locator has multiple matches, select the first **visible** match, not blindly `.first()`.
+- For navigation controls that may render as either link or button across breakpoints, support both variants.
+- Prefer deterministic helper methods in page objects (e.g., `clickFirstVisible`) over ad-hoc inline selector retries.
+- If a menu must be opened before a target option appears, model that as explicit POM steps before assertions.
+
 ## Assertion Strategy
 - Assert at meaningful checkpoints tied to expected outcomes.
 - Keep assertions focused and stable.

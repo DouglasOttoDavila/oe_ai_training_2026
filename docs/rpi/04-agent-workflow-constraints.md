@@ -49,9 +49,24 @@ At completion, return:
 - Keep retries minimal and deterministic.
 
 ## MCP Tool Availability
-If required MCP tools are unavailable, stop with a clear missing-tools report:
-- TestRail case retrieval (must support `get_case`)
-- Vibium browser session/navigation/interaction tools
+Use this fallback matrix when MCP tools are unavailable:
+
+- If TestRail case retrieval tools are unavailable (no `get_case` support):
+   - Stop execution.
+   - Return a clear missing-tools report.
+
+- If Vibium browser session/navigation/interaction tools are unavailable:
+   - Do not stop the batch.
+   - Fallback to Playwright-only reproduction for the case.
+   - Continue-on-failure remains mandatory.
+   - Label evidence source as `playwright-fallback` in per-case results.
+
+- If both categories are unavailable:
+   - Stop execution and return missing-tools report.
+
+Minimum required availability:
+- TestRail `get_case` support is mandatory.
+- Vibium support is optional only when fallback is available.
 
 ## Naming Conventions
 - Generated spec path: `tests/generated/{case-id}.spec.ts`

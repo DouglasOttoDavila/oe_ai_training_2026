@@ -208,7 +208,8 @@ Other values (project/section/template/type label defaults) are currently hardco
 - n8n client uses timeout + retry/backoff.
 - For Jira->TestRail flow, CLI saves the response file; case creation is agent-driven via MCP.
 - For TestRail->Playwright flow, execution policy is continue-on-failure per case list.
-- If required MCP tools are unavailable, prompts/agents are expected to stop with a missing-tools report.
+- If TestRail retrieval MCP tools are unavailable, prompts/agents stop with a missing-tools report.
+- If Vibium MCP tools are unavailable, prompts/agents fallback to Playwright-only reproduction and continue reporting per-case outcomes.
 
 ---
 

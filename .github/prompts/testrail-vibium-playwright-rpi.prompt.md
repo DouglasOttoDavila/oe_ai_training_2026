@@ -20,6 +20,7 @@ If both are provided, use `caseIds`.
    - Call TestRail MCP `get_case`.
    - Normalize context and executable steps.
    - Use Vibium MCP to navigate and reproduce steps on the target page.
+   - If Vibium MCP tools are unavailable, fallback to Playwright-only reproduction and continue processing.
    - Generate/update Playwright page objects under `src/pages`.
    - Generate/update `tests/generated/{case-id}.spec.ts`.
    - Run the generated test immediately.
@@ -31,6 +32,8 @@ If both are provided, use `caseIds`.
 - Continue-on-failure is default and mandatory unless user explicitly overrides.
 - Do not log secrets or copy full raw payloads in output.
 - Keep generated code aligned with repository style and POM conventions.
+- For responsive UI states, selectors must handle link/button variants and avoid blind `.first()` on role locators when hidden duplicates are possible.
+- If running in fallback mode, include `evidenceSource: playwright-fallback` in the case result.
 
 ## OUTPUT FORMAT
 1) Short summary.

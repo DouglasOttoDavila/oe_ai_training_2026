@@ -70,10 +70,24 @@ Headings are detected by lines like `Heading:` (case-insensitive). Supported hea
 - `Open Questions:`
 - `Assumptions:`
 
+Heading disambiguation:
+- Treat a heading as a top-level section heading only when it starts at column 0 (no leading indentation).
+- Treat indented `Expected Results:` lines that follow a numbered/bulleted step as step-level expected text, not as a new top-level section.
+- For step-level parsing, preserve action/expected pairing and do not terminate the `Steps:` section when encountering an indented `Expected Results:` line.
+
 ### Steps extraction rules (agent)
 - The `Steps:` section is split by lines.
 - Numbered or bulleted lines (e.g. `1.`, `-`) are normalized to step actions.
 - If a line includes `->`, `=>`, or `Expected:` the content is split into action and expected.
+- If a numbered/bulleted step is immediately followed by an indented `Expected Results:` line, map that line to `step.expected` for that step.
+
+### Appendix exclusion rules
+- Exclude non-case appendix sections from parsing and TestRail creation.
+- Stop parsing test case blocks at the first top-level heading that starts with any of:
+  - `### Coverage Map`
+  - `### Open Questions`
+  - `### Assumptions`
+- Ignore all subsequent appendix content for case creation payloads.
 
 ### Missing sections (agent)
 - Missing title: generate `Untitled test case {n}` and log a warning.
@@ -92,7 +106,8 @@ This keeps the meaning without guessing per-step expectations.
 - Steps block -> steps (structured)
 - custom_steps_separated -> map step.action to content and step.expected to expected
 - Expected results -> a single "Execute scenario" step when only a block exists
-- References -> references (always set to `{JIRA_ID}`)
+- References -> references (always set to `{JIRA_ID}` only)
+- Refs sanitization rule: `refs` must contain only the Jira key (for example `QAT-114`), never AC/FR tokens or mixed comma-separated values.
 - Labels -> include `ai-generated-oe-training-2026`
 - Section ID -> TESTRAIL_SECTION_ID
 - Template ID -> TESTRAIL_TEMPLATE_ID

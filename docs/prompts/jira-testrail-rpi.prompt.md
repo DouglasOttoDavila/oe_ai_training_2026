@@ -26,7 +26,9 @@ Use these files as authoritative requirements:
    - Pass type_id from .env when creating cases.
    - Always include custom_steps_separated built from parsed steps (action -> content, expected -> expected).
    - Only use a single "Execute scenario" step when no explicit steps are provided in the text.
-   - Always set references to the Jira ID.
+   - Always set references (`refs`) to the Jira ID only (example: `QAT-114`).
+   - Never include AC/FR tokens or other non-Jira references in `refs`.
+   - Ignore non-case appendix sections before parsing/creating cases. Exclude content starting at headings like `### Coverage Map`, `### Open Questions`, or `### Assumptions`.
    - Return created case links and summary.
 
 ## EXECUTION RULES
@@ -36,6 +38,11 @@ Use these files as authoritative requirements:
 - Do not log secrets or full raw responses; log counts and IDs only.
 - If MCP tool names are unknown, list available TestRail MCP tools and select the correct ones for direct use.
 - If any command fails, report the error and continue where possible.
+- For TestRail `add_case` operations, use bounded retries (max 2 retries, exponential backoff).
+- If an `add_case` call times out or returns an ambiguous transport failure, do verify-before-retry idempotency:
+   1) Check whether a case already exists using the same `section_id` + exact `title` + `refs`.
+   2) Retry only if the case is not found.
+   3) If still unresolved, report the case as failed with reason `timeout_unconfirmed`.
 
 ## OUTPUT FORMAT
 1) Short summary of actions taken.
