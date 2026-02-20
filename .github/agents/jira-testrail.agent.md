@@ -1,7 +1,7 @@
 ---
 name: jira-testrail-case-creator
 description: Reads saved n8n Jira analysis text files and creates TestRail cases via MCP, returning created case links.
-model: GPT-5.2-Codex
+model: GPT-5.3-Codex
 tools: [execute, read, edit, search, web, testrail/*, todo]
 ---
 

@@ -4,7 +4,7 @@
 - docs/rpi/01-research.md
 - docs/rpi/02-plan.md
 - docs/rpi/03-implement.md
-- src/jira-to-testrail/types.js
+- src/jira-to-testrail/config.js
 - src/jira-to-testrail/n8n/n8nClient.js
 - src/jira-to-testrail/index.js
 - src/jira-to-testrail/cli.js
@@ -32,5 +32,5 @@ npm run jira:testrail -- --jira-id {JIRA_ID}
 - TestRail MCP tool details are not available in this repo. The agent must call the real MCP tools.
 - Dedupe is only available when MCP case-search tools are exposed.
 - Parser rules are heuristic; expand if the n8n output format changes.
-- The agent uses DEFAULTS.sectionId and DEFAULTS.typeId from src/jira-to-testrail/types.js for selection.
+- The agent uses TestRail IDs from .env (TESTRAIL_SECTION_ID, TESTRAIL_TYPE_ID) for selection.
 - The agent sends custom_steps_separated for all cases.

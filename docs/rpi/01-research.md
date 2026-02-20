@@ -38,11 +38,11 @@ Error message is shown
 - Agent-created test cases in TestRail:
   - Project: 25
   - Section: AI-Generated TCs
-  - Section ID: from src/jira-to-testrail/types.js (DEFAULTS.sectionId)
+  - Section ID: from .env (TESTRAIL_SECTION_ID)
   - Template: Test Case (Steps)
-  - Template ID: from src/jira-to-testrail/types.js (DEFAULTS.templateId)
+  - Template ID: from .env (TESTRAIL_TEMPLATE_ID)
   - Type: functional
-  - Type ID: from src/jira-to-testrail/types.js (DEFAULTS.typeId)
+  - Type ID: from .env (TESTRAIL_TYPE_ID)
   - References: `{JIRA_ID}`
   - Label: ai-generated-oe-training-2026
 - CLI summary:
@@ -94,9 +94,9 @@ This keeps the meaning without guessing per-step expectations.
 - Expected results -> a single "Execute scenario" step when only a block exists
 - References -> references (always set to `{JIRA_ID}`)
 - Labels -> include `ai-generated-oe-training-2026`
-- Section ID -> DEFAULTS.sectionId
-- Template ID -> DEFAULTS.templateId
-- Type ID -> DEFAULTS.typeId
+- Section ID -> TESTRAIL_SECTION_ID
+- Template ID -> TESTRAIL_TEMPLATE_ID
+- Type ID -> TESTRAIL_TYPE_ID
 - Type -> functional
 - Template -> Test Case (Steps)
 - Section -> AI-Generated TCs
@@ -124,8 +124,11 @@ Example custom_steps_separated payload:
   - `N8N_OUTPUT_DIR` (default `data/n8n`)
   - `TESTRAIL_PROJECT_ID` (default 25)
   - `TESTRAIL_SECTION_NAME` (default Demo Test)
+  - `TESTRAIL_SECTION_ID` (default: optional, prefer explicit ID when provided)
   - `TESTRAIL_TEMPLATE_NAME` (default Test Case (Steps))
+  - `TESTRAIL_TEMPLATE_ID` (default: optional, prefer explicit ID when provided)
   - `TESTRAIL_TYPE_NAME` (default functional)
+  - `TESTRAIL_TYPE_ID` (default: optional, prefer explicit ID when provided)
   - `TESTRAIL_LABEL` (default ai-generated-oe-training-2026)
 
 ## Security notes

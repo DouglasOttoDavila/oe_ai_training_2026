@@ -1,0 +1,294 @@
+```
+title: Verify "Services" menu is present in global top navigation.
+preconditions: User is on the Object Edge website homepage.
+steps:
+  - step: Navigate to the Object Edge website homepage.
+    expected_results: The Object Edge homepage loads successfully.
+  - step: Observe the global top navigation (header) area.
+    expected_results: A navigation item labeled "Services" is visible in the global top navigation.
+references: AC1, FR8
+
+title: Verify "Digital Transformation" is in "Services" dropdown.
+preconditions: User is on the Object Edge website homepage.
+steps:
+  - step: Navigate to the Object Edge website homepage.
+    expected_results: The Object Edge homepage loads successfully.
+  - step: Hover over or click the "Services" navigation item in the global top navigation.
+    expected_results: A dropdown menu appears from the "Services" navigation item.
+  - step: Observe the options presented within the "Services" dropdown menu.
+    expected_results: "Digital Transformation" is listed as one of the options in the dropdown menu.
+references: AC1, FR9
+
+title: Click "Digital Transformation" from nav loads corresponding page.
+preconditions: User is on the Object Edge website homepage.
+steps:
+  - step: Navigate to the Object Edge website homepage.
+    expected_results: The Object Edge homepage loads successfully.
+  - step: Hover over or click the "Services" navigation item in the global top navigation to reveal the dropdown.
+    expected_results: A dropdown menu appears from the "Services" navigation item.
+  - step: Click the "Digital Transformation" link within the "Services" dropdown.
+    expected_results: The browser navigates to a new page. The page URL is `/services/digital-transformation-consulting`.
+references: AC1, FR3, FR10, FR31
+
+title: Verify page loads without errors or broken elements.
+preconditions: User is on the Object Edge website homepage.
+steps:
+  - step: Navigate to the Digital Transformation Service page via the global top navigation: Hover over "Services" and click "Digital Transformation".
+    expected_results: The Digital Transformation Service page loads completely without displaying any error messages (e.g., HTTP 404, 500 errors) or broken UI elements (e.g., missing images, unstyled components).
+  - step: Scroll through the entire page.
+    expected_results: All content sections, images, and interactive elements are rendered correctly and appear functional.
+references: AC1, FR11, Risk
+
+title: Verify H1 title matches "Digital Transformation Consulting".
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Locate the main header (H1) element on the page.
+    expected_results: An H1 element is present and clearly visible at the top of the main content area.
+  - step: Verify the text content of the H1 element.
+    expected_results: The H1 element displays the exact text "Digital Transformation Consulting".
+references: AC2, FR12, FR13
+
+title: Verify Page URL is `/services/digital-transformation-consulting`.
+preconditions: User is on the Object Edge website homepage.
+steps:
+  - step: Navigate to the Digital Transformation Service page by hovering over "Services" in the global navigation and clicking "Digital Transformation".
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Observe the URL in the browser's address bar.
+    expected_results: The URL displayed in the address bar is `/services/digital-transformation-consulting`.
+references: AC7, FR31
+
+title: Verify all CTA buttons are visible and clickable.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Visually scan the entire page for Call-to-Action (CTA) buttons (e.g., "Schedule a Free Consultation", "Request Digital Maturity Assessment").
+    expected_results: All intended CTA buttons are clearly visible and distinct from other page elements.
+  - step: Attempt to click each identified CTA button.
+    expected_results: Each CTA button is clickable and changes cursor state (e.g., to a pointer) on hover/focus.
+references: AC6, FR25
+
+title: Verify introductory summary content is present and relevant.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Locate the area directly below the H1 title "Digital Transformation Consulting".
+    expected_results: An introductory summary text block is present immediately below the H1 title.
+  - step: Read the content of the introductory summary.
+    expected_results: The summary text effectively describes Object Edge's digital transformation practice (e.g., a data-driven consultancy that helps enterprises evolve their digital strategies and experience design) and is relevant to the page topic.
+references: AC2, FR14
+
+title: Verify "What Is Digital Transformation?" explainer block content.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Scroll down the page and locate the explainer block titled "What Is Digital Transformation?".
+    expected_results: A dedicated section or content block clearly titled "What Is Digital Transformation?" is present on the page.
+  - step: Read the content within this explainer block.
+    expected_results: The content uses concise wording that reflects the concept of modernization of digital business tools and experiences.
+references: AC4, FR18, FR19
+
+title: Verify "Digital Maturity Assessment" section and embedded CTA.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Scroll down the page and locate the section related to "Digital Maturity Assessment".
+    expected_results: A dedicated section titled or clearly indicating "Digital Maturity Assessment" is present on the page.
+  - step: Within the "Digital Maturity Assessment" section, locate the call-to-action button.
+    expected_results: An embedded call-to-action button (e.g., "Schedule a Complimentary Assessment") is present within this section. The button is clearly visible and clickable.
+references: AC4, FR20, FR21
+
+title: Verify a relevant hero image/banner is displayed.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Observe the top section of the page, typically below the global navigation and/or header.
+    expected_results: A prominent hero image or banner related to digital consulting is displayed. The image appears professional, is not distorted, and loads without errors.
+    note: The specific image content cannot be verified until Open Question 3 (Visual Assets) is answered.
+references: AC5, FR22
+
+title: Verify overall styling consistency with main site.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Visually inspect the page's fonts, colors, spacing, and button styles.
+    expected_results: The page's fonts, colors, spacing, and UI component styling (e.g., buttons, headings, paragraph text) are consistent with other established pages on the main Object Edge website.
+    note: A detailed validation against specific design guidelines or a style guide is blocked until Open Question 4 (Styling Consistency) is answered.
+references: AC5, FR23
+
+title: Verify UX flows facilitate easy scanning and comprehension.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Quickly scan the page from top to bottom, observing the layout, use of headings, bullet points, and paragraph length.
+    expected_results: The page content is organized logically with clear headings and subheadings. Information is presented in digestible chunks (e.g., bullet points for lists, concise paragraphs). The overall layout facilitates easy scanning and comprehension of the service offerings.
+    note: A detailed validation against specific UX guidelines, wireframes, or mockups is blocked until Open Question 5 (UX Flows) is answered.
+references: AC5, FR24
+
+title: Verify Meta Title contains "digital transformation consulting".
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Right-click on the page and select "View Page Source" or use browser developer tools to inspect the `<head>` section.
+    expected_results: The HTML source code is displayed.
+  - step: Locate the `<title>` tag within the `<head>` section.
+    expected_results: A `<title>` tag is present. The text content within the `<title>` tag is optimized for digital transformation consulting keywords (e.g., contains "Digital Transformation Consulting", "Object Edge").
+references: AC7, FR28
+
+title: Verify Meta Description contains "digital transformation consulting".
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Right-click on the page and select "View Page Source" or use browser developer tools to inspect the `<head>` section.
+    expected_results: The HTML source code is displayed.
+  - step: Locate the `<meta name="description">` tag within the `<head>` section.
+    expected_results: A `<meta name="description">` tag is present. The `content` attribute of this tag is optimized for digital transformation consulting keywords (e.g., describes Object Edge's digital transformation services).
+references: AC7, FR29
+
+title: Verify specific CTA button labels (e.g., "Schedule a Free Consultation").
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Locate all Call-to-Action (CTA) buttons on the page.
+    expected_results: All CTA buttons are present and clearly visible.
+  - step: Verify the text label of each CTA button.
+    expected_results: At least one CTA button has the label "Schedule a Free Consultation" and/or "Request Digital Maturity Assessment". All other CTA buttons (if any) have appropriate and clear labels consistent with lead generation.
+references: AC6, FR26
+
+title: Verify all key transformation pillars are listed.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Locate the section dedicated to "key transformation pillars" (or similar phrasing).
+    expected_results: A section clearly listing or describing Object Edge's key transformation pillars is present on the page.
+  - step: Observe the list of pillars presented in this section.
+    expected_results: The following pillars are listed: Strategic planning, Platform evaluations, Program leadership, Digital road mapping, Generative AI consulting, Change management, Customized training. Each listed item is distinct and clearly identifiable.
+    note: This test step is blocked until Open Question 1 (Service Offerings) is answered, as the definitive list of pillars is ambiguous.
+references: AC3, FR15, FR16
+
+title: Verify each pillar has a short description explaining business value.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Locate the section detailing the key transformation pillars.
+    expected_results: The section with key transformation pillars is present on the page.
+  - step: For each listed transformation pillar (e.g., "Strategic planning"), verify the presence of an accompanying description.
+    expected_results: Each transformation pillar has a short, concise description directly associated with it, explaining its business value or what it entails.
+    note: This test is blocked until Open Question 1 (Service Offerings) is answered, as the definitive list of pillars and their expected descriptions are not yet clear.
+references: AC3, FR17
+
+title: Verify CTA links to the correct external system (contact form, lead capture, or calendar booking).
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Click on a Call-to-Action (CTA) button (e.g., "Schedule a Free Consultation").
+    expected_results: The browser navigates to an external system (e.g., a contact form, lead capture module, or calendar booking service). The URL and interface of the destination page are consistent with the expected external system.
+    note: This test is blocked until Open Question 2 (CTA Destination) is answered, as the specific target system and its URL are unknown.
+references: AC6, FR27
+
+title: Verify CTA submission/booking flow is successful.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Click on a Call-to-Action (CTA) button and navigate to the external system.
+    expected_results: The external system (contact form, lead capture, or calendar booking service) loads correctly.
+  - step: Complete the form/booking process (e.g., fill in required fields, select a date/time, click submit).
+    expected_results: The form submission or booking process is successful, typically indicated by a confirmation message or redirection to a thank-you page.
+    note: This test is blocked until Open Question 2 (CTA Destination) is answered, as the specific target system and its expected successful flow are unknown.
+references: AC6, FR27
+
+title: Verify OG tags contain "digital transformation consulting" keywords.
+preconditions: User is on the Digital Transformation Service page.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Right-click on the page and select "View Page Source" or use browser developer tools to inspect the `<head>` section.
+    expected_results: The HTML source code is displayed.
+  - step: Locate Open Graph (OG) meta tags (e.g., `<meta property="og:title">`, `<meta property="og:description">`, `<meta property="og:image">`) within the `<head>` section.
+    expected_results: Relevant OG tags are present. The `content` attribute of these tags is optimized for digital transformation consulting keywords and reflects appropriate sharing information (e.g., title, description, image URL).
+references: AC7, FR30
+
+title: Verify no console errors on page load.
+preconditions: User is on the Object Edge website homepage.
+steps:
+  - step: Navigate to the Digital Transformation Service page (`/services/digital-transformation-consulting`).
+    expected_results: The Digital Transformation Service page loads successfully.
+  - step: Open the browser's developer console (e.g., F12 -> Console tab).
+    expected_results: The Console tab is open.
+  - step: Observe the console for any error messages (red text) or severe warnings (yellow text).
+    expected_results: No JavaScript errors (red text) or critical warnings are present in the console upon page load and interaction. Minor, non-breaking warnings may be acceptable if validated.
+references: AC1, FR11, Risk
+
+---
+## Coverage Map (AC -> TC Titles)
+
+**AC1:**
+- Verify "Services" menu is present in global top navigation.
+- Verify "Digital Transformation" is in "Services" dropdown.
+- Click "Digital Transformation" from nav loads corresponding page.
+- Verify page loads without errors or broken elements.
+- Verify no console errors on page load.
+
+**AC2:**
+- Verify H1 title matches "Digital Transformation Consulting".
+- Verify introductory summary content is present and relevant.
+
+**AC3:**
+- Verify all key transformation pillars are listed. (BLOCKED)
+- Verify each pillar has a short description explaining business value. (BLOCKED)
+
+**AC4:**
+- Verify "What Is Digital Transformation?" explainer block content.
+- Verify "Digital Maturity Assessment" section and embedded CTA.
+
+**AC5:**
+- Verify a relevant hero image/banner is displayed.
+- Verify overall styling consistency with main site.
+- Verify UX flows facilitate easy scanning and comprehension.
+
+**AC6:**
+- Verify all CTA buttons are visible and clickable.
+- Verify specific CTA button labels (e.g., "Schedule a Free Consultation").
+- Verify CTA links to the correct external system (contact form, lead capture, or calendar booking). (BLOCKED)
+- Verify CTA submission/booking flow is successful. (BLOCKED)
+
+**AC7:**
+- Verify Meta Title contains "digital transformation consulting".
+- Verify Meta Description contains "digital transformation consulting".
+- Verify OG tags contain "digital transformation consulting" keywords.
+- Verify Page URL is `/services/digital-transformation-consulting`.
+
+---
+## Open Questions (carry forward)
+
+1.  **Regarding Service Offerings:** The description lists specific offerings (strategic planning, program leadership, digital road mapping, generative AI consulting, change management, customized training) and states "among others." AC3 provides a definitive list of pillars (Strategic planning, *Platform evaluations*, Program leadership, Digital road mapping, Generative AI consulting, Change management, Customized training). Which list of offerings is definitive for the content on this specific page? Is "Platform evaluations" a required pillar, and are there indeed "others" beyond AC3's list? **(Blocks TC: "Verify all key transformation pillars are listed" and "Verify each pillar has a short description explaining business value")**
+2.  **CTA Destination:** Which specific system will CTAs link to (contact form, lead capture module, or calendar booking service)? Are these existing systems or will they need to be developed/integrated? **(Blocks TC: "Verify CTA links to the correct external system (contact form, lead capture, or calendar booking)" and "Verify CTA submission/booking flow is successful")**
+3.  **Visual Assets:** What specific hero image/banner is to be used? What is its source or where will it be designed? **(Impacts TC: "Verify a relevant hero image/banner is displayed")**
+4.  **Styling Consistency:** Are there specific design guidelines, a design system, or a style guide that defines the "consistent styling with main site (fonts, colors, spacing)"? **(Partially blocks TC: "Verify overall styling consistency with main site" for detailed validation)**
+5.  **UX Flows:** Are there specific UX guidelines, wireframes, or mockups that define "UX flows that facilitate easy scanning and comprehension"? **(Partially blocks TC: "Verify UX flows facilitate easy scanning and comprehension" for detailed validation)**
+6.  **Analytics Tagging:** What is the specific analytics platform (e.g., Google Analytics, Adobe Analytics) and what specific data points or events need to be tagged for CTA clicks? **(Blocks TC: "Verify CTA click events are correctly tagged and tracked in analytics" - *Note: This TC was in the inventory but not generated as a TestRail case due to being fully blocked, but is relevant here as an Open Question.*)**
+7.  **Designer Sign-off:** What is the timeline and process for "Designer sign-off on visual assets"? Which specific designer/team is responsible?
+
+---
+## Assumptions (carry forward)
+
+1.  The "Services > Digital Transformation" navigation described in the story is implemented via the "Services" dropdown in the global top navigation as specified in AC1.
+2.  The "Service title shown on the site" (AC2) refers to "Digital Transformation Consulting".
+3.  The example content for the introductory summary (e.g., "a data-driven consultancy that helps enterprises evolve their digital strategies and experience design") is indicative of the *type* of content expected, rather than verbatim text. The actual content should reflect similar intent and quality.
+4.  The systems linked by CTAs (contact form, lead capture module, or calendar booking service) will be functional and available for testing integration once their specific identity is confirmed.
+```

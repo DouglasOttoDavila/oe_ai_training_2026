@@ -8,7 +8,7 @@
 3. Define agent-driven parsing and TestRail creation.
   - Checkpoint: agent reads the saved response file and parses cases.
   - Checkpoint: agent calls MCP tools to create cases.
-  - Checkpoint: agent uses DEFAULTS.sectionId and DEFAULTS.typeId from src/jira-to-testrail/types.js.
+  - Checkpoint: agent uses TestRail IDs from .env (TESTRAIL_SECTION_ID, TESTRAIL_TYPE_ID).
   - Checkpoint: agent sends custom_steps_separated for all cases.
 5. Add parser unit tests and npm scripts.
    - Checkpoint: `npm run test:parser` passes locally.
@@ -57,7 +57,7 @@
 - [ ] Create docs/rpi/01-research.md
 - [ ] Create docs/rpi/02-plan.md
 - [ ] Create docs/rpi/03-implement.md
-- [ ] Add src/jira-to-testrail/types.js
+- [ ] Add env config loader for TestRail defaults
 - [ ] Add src/jira-to-testrail/n8n/n8nClient.js
 - [ ] Add src/jira-to-testrail/index.js
 - [ ] Add src/jira-to-testrail/cli.js

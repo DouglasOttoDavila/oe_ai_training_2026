@@ -17,8 +17,8 @@ Use these files as authoritative requirements:
    - If the file is missing, stop and report the error.
 4) After the CLI saves the n8n response file, read it and create TestRail cases directly using MCP tools.
    - Use the mapping rules in docs/rpi/01-research.md.
-   - Use IDs from src/jira-to-testrail/types.js (DEFAULTS.sectionId, DEFAULTS.typeId).
-   - Pass type_id=DEFAULTS.typeId when creating cases.
+   - Use IDs from .env (e.g., TESTRAIL_SECTION_ID, TESTRAIL_TYPE_ID, and TESTRAIL_TEMPLATE_ID if required).
+   - Pass type_id from .env when creating cases.
    - Always include custom_steps_separated built from parsed steps (action -> content, expected -> expected).
    - Only use a single "Execute scenario" step when no explicit steps are provided in the text.
    - Always set references to the Jira ID.

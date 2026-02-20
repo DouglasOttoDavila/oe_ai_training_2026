@@ -1,0 +1,658 @@
+Test Case Title: Verify "Services" menu item is present in global top navigation.
+Preconditions:
+The user is on the website homepage.
+
+Test Data:
+N/A
+
+Steps:
+1. Load the website homepage in a browser.
+2. Observe the global top navigation area (header) of the page.
+
+Expected Results:
+1. The website homepage loads successfully.
+2. A menu item labeled "Services" is clearly visible in the global top navigation.
+
+References: AC1, FR6
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify "Digital Transformation" is present in "Services" dropdown menu.
+Preconditions:
+The user is on the website homepage.
+The "Services" menu item is present in the global top navigation.
+
+Test Data:
+N/A
+
+Steps:
+1. Hover over or click the "Services" menu item in the global top navigation.
+2. Observe the dropdown menu that appears.
+
+Expected Results:
+1. A dropdown menu is displayed under the "Services" menu item.
+2. "Digital Transformation" is listed as an option within this dropdown menu.
+
+References: AC1, FR7
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Click "Digital Transformation" and verify correct page loads.
+Preconditions:
+The user is on the website homepage.
+"Digital Transformation" is present and accessible in the "Services" dropdown menu.
+
+Test Data:
+Expected Page URL: `/services/digital-transformation-consulting`
+
+Steps:
+1. Click the "Digital Transformation" link within the "Services" dropdown menu.
+2. Observe the URL in the browser's address bar after the page loads.
+
+Expected Results:
+1. The browser navigates away from the current page.
+2. The URL of the loaded page is exactly `/services/digital-transformation-consulting`.
+
+References: AC1, FR8, FR29
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify "Digital Transformation" page loads without any errors.
+Preconditions:
+The user is on the website homepage.
+"Digital Transformation" is present and accessible in the "Services" dropdown menu.
+
+Test Data:
+N/A
+
+Steps:
+1. Click the "Digital Transformation" link within the "Services" dropdown menu.
+2. Observe the page as it loads and after it has finished loading.
+
+Expected Results:
+1. The page loads completely without displaying any visible error messages (e.g., 404 Not Found, 500 Internal Server Error, JavaScript errors in the browser console, broken layout elements, or missing content placeholders).
+
+References: AC1, FR9, Risk
+Priority: P0
+Type: Negative / Error
+
+---
+
+Test Case Title: Verify H1 title "Digital Transformation Consulting" is present.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+Expected H1 Text: "Digital Transformation Consulting"
+
+Steps:
+1. Identify the primary heading (H1) element on the loaded page.
+2. Read the text content of the identified H1 element.
+
+Expected Results:
+1. A single H1 element is present at the top of the main content area.
+2. The H1 element displays the exact text "Digital Transformation Consulting".
+
+References: AC2, FR10, FR11
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify introductory summary for digital transformation practice is present.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+The H1 title is present on the page.
+
+Test Data:
+N/A
+
+Steps:
+1. Locate the content immediately below the main H1 title on the page.
+
+Expected Results:
+1. An introductory summary section or paragraph is visible directly below the H1 title, describing Object Edge's digital transformation practice.
+
+References: AC2, FR12, FR1, FR5
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify "Service Offerings" section is clearly present.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+N/A
+
+Steps:
+1. Scroll through the main content area of the "Digital Transformation" page.
+
+Expected Results:
+1. A distinct content section, clearly identifiable by a heading (e.g., "Service Offerings" or "Transformation Pillars"), is present and lists various service offerings.
+
+References: AC3, FR13
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify "What Is Digital Transformation?" explainer block is present.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+N/A
+
+Steps:
+1. Scroll through the main content area of the "Digital Transformation" page.
+
+Expected Results:
+1. A dedicated content block or section with a heading like "What Is Digital Transformation?" or similar is clearly visible on the page.
+
+References: AC4, FR16
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify "Digital Maturity Assessment" section is present.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+N/A
+
+Steps:
+1. Scroll through the main content area of the "Digital Transformation" page.
+
+Expected Results:
+1. A distinct section, clearly identifiable by a heading such as "Digital Maturity Assessment" or similar, is visible on the page.
+
+References: AC4, FR18
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify embedded CTA button for "Schedule a complimentary assessment" is present and clickable within the "Digital Maturity Assessment" section.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+The "Digital Maturity Assessment" section is present on the page.
+
+Test Data:
+N/A
+
+Steps:
+1. Navigate to the "Digital Maturity Assessment" section on the page.
+2. Observe the content within this section for any embedded buttons.
+3. Attempt to click the identified button.
+
+Expected Results:
+1. A clearly visible Call-to-Action (CTA) button with text similar to "Schedule a complimentary assessment" is embedded within the "Digital Maturity Assessment" section.
+2. The button is visually responsive when hovered over and when clicked (e.g., cursor changes, button state changes), indicating it is interactive.
+
+References: AC4, FR19
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify primary CTA button(s) (e.g., "Schedule a Free Consultation") are clearly visible.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+N/A
+
+Steps:
+1. Load the "Digital Transformation" page.
+2. Scroll through the content of the page, paying attention to interactive elements designed for lead generation.
+
+Expected Results:
+1. At least one clearly visible Call-to-Action (CTA) button with text such as "Schedule a Free Consultation" and/or "Request Digital Maturity Assessment" is present on the page, standing out from surrounding content.
+
+References: AC6, FR23
+Priority: P0
+Type: Happy Path
+
+---
+
+Test Case Title: Verify page URL is exactly `/services/digital-transformation-consulting`.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+Expected Page URL: `/services/digital-transformation-consulting`
+
+Steps:
+1. Observe the URL displayed in the browser's address bar.
+
+Expected Results:
+1. The URL in the browser's address bar is exactly `/services/digital-transformation-consulting`.
+
+References: AC7, FR29
+Priority: P0
+Type: Validation
+
+---
+
+Test Case Title: Verify all 7 transformation pillars are listed in the "Service Offerings" section.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+The "Service Offerings" section is present on the page.
+
+Test Data:
+Expected Transformation Pillars: Strategic planning, Platform evaluations, Program leadership, Digital road mapping, Generative AI consulting, Change management, Customized training
+
+Steps:
+1. Navigate to the "Service Offerings" section of the page.
+2. Examine the list of individual items presented as transformation pillars.
+
+Expected Results:
+1. The "Service Offerings" section explicitly lists all 7 of the following transformation pillars: "Strategic planning", "Platform evaluations", "Program leadership", "Digital road mapping", "Generative AI consulting", "Change management", "Customized training".
+
+References: AC3, FR14
+Priority: P1
+Type: Happy Path
+
+---
+
+Test Case Title: Verify each transformation pillar has a short description of its business value.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+All transformation pillars are listed in the "Service Offerings" section.
+
+Test Data:
+N/A
+
+Steps:
+1. Navigate to the "Service Offerings" section.
+2. For each listed transformation pillar (e.g., "Strategic planning"), observe any accompanying text or sub-content.
+
+Expected Results:
+1. Each transformation pillar item includes a concise description that clearly explains its business value or benefit.
+
+References: AC3, FR15
+Priority: P1
+Type: Happy Path
+
+---
+
+Test Case Title: Verify "What Is Digital Transformation?" explainer content is concise and reflects modernization.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+The "What Is Digital Transformation?" explainer block is present on the page.
+
+Test Data:
+N/A
+
+Steps:
+1. Locate the "What Is Digital Transformation?" explainer block on the page.
+2. Read the text content contained within this block.
+
+Expected Results:
+1. The content within the explainer block is concise, avoiding unnecessary jargon or verbosity.
+2. The content clearly conveys the concept of modernizing digital business tools and experiences.
+
+References: AC4, FR17
+Priority: P1
+Type: Validation
+
+---
+
+Test Case Title: Verify hero image/banner related to digital consulting is present.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+
+Test Data:
+N/A
+
+Steps:
+1. Observe the uppermost section of the page, typically below the global navigation.
+
+Expected Results:
+1. A prominent hero image or banner related to digital consulting, digital transformation, or technology evolution is displayed at the top of the page.
+
+References: AC5, FR20
+Priority: P1
+Type: Happy Path
+
+---
+
+Test Case Title: Verify consistent styling with main site (fonts, colors, spacing).
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+[Note: This test case is blocked by Open Question 2, which requires specific styling guidelines or design system references for objective verification.]
+
+Test Data:
+N/A
+
+Steps:
+1. Visually compare the fonts used for headings and body text on the "Digital Transformation" page with fonts used on other established pages of the main website.
+2. Visually compare the color palette used for text, backgrounds, and interactive elements on the "Digital Transformation" page with the color palette used across the main website.
+3. Observe the spacing (padding, margins, line-height) between elements such as paragraphs, sections, images, and lists on the "Digital Transformation" page and compare with other established pages.
+
+Expected Results:
+1. Fonts used on the "Digital Transformation" page are consistent with the main website's defined design system.
+2. Colors used on the "Digital Transformation" page are consistent with the main website's defined design system.
+3. Spacing between elements on the "Digital Transformation" page is consistent with the main website's design system, contributing to overall visual harmony and readability.
+
+References: AC5, FR21
+Priority: P1
+Type: Visual / UI
+
+---
+
+Test Case Title: Verify UX flows facilitate easy scanning and comprehension.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+[Note: This test case is blocked by Open Question 3, which asks for specific requirements or examples for "UX flows that facilitate easy scanning and comprehension" to ensure objective assessment.]
+
+Test Data:
+N/A
+
+Steps:
+1. Perform a quick scroll-through of the entire page content, mimicking a user quickly scanning for key information.
+2. Identify the presence and effectiveness of visual hierarchy elements such as distinct headings, subheadings, bullet points, numbered lists, and visual breaks between sections.
+3. Based on the quick scan, assess the immediate understanding of the page's main purpose, key service offerings, and Calls-to-Action.
+
+Expected Results:
+1. The page layout effectively utilizes clear headings, logical content segmentation, and/or visual aids (e.g., icons, imagery, bullet points) to enable quick scanning of information.
+2. The overall organization and presentation of content allows for easy comprehension of the service offerings and their value proposition with minimal effort or extensive reading.
+
+References: AC5, FR22
+Priority: P1
+Type: UX / Usability
+
+---
+
+Test Case Title: Verify all CTAs link to the correct contact form/lead capture/booking service.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+All relevant CTA buttons are visible on the page.
+[Note: This test case is blocked by Open Question 4, which requires the exact URLs or integration points for the contact form, lead capture module, or calendar booking service.]
+
+Test Data:
+Expected Link Target for "Schedule a Free Consultation" CTA: [Open Question 4]
+Expected Link Target for "Schedule a complimentary assessment" CTA: [Open Question 4]
+
+Steps:
+1. For each primary CTA button on the page (e.g., "Schedule a Free Consultation", the embedded "Schedule a complimentary assessment" button):
+    a. Hover over the button and observe the link destination preview (e.g., in the browser's status bar).
+    b. Click the button.
+    c. Observe the page that loads after clicking the button.
+
+Expected Results:
+1. For each CTA button, the hover action reveals a link target that matches the expected URL for the respective lead capture service (as provided in Test Data).
+2. Clicking each CTA button successfully navigates the user to the correct contact form, lead capture module, or calendar booking service, as specified for that CTA.
+
+References: AC6, FR25
+Priority: P1
+Type: Integration
+
+---
+
+Test Case Title: Verify CTA button texts match specified examples like "Schedule a Free Consultation" and/or "Request Digital Maturity Assessment".
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+Primary CTA buttons are visible on the page.
+
+Test Data:
+Example CTA Texts: "Schedule a Free Consultation", "Request Digital Maturity Assessment"
+
+Steps:
+1. Locate all primary Call-to-Action (CTA) buttons on the page.
+2. Read the text displayed on each identified CTA button.
+
+Expected Results:
+1. The text on the primary CTA button(s) is clear, action-oriented, and aligns with specified examples such as "Schedule a Free Consultation" and/or "Request Digital Maturity Assessment".
+
+References: AC6, FR24
+Priority: P1
+Type: Validation
+
+---
+
+Test Case Title: Verify Meta Title is optimized for digital transformation consulting keywords.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+[Note: This test case is blocked by Open Question 5, which requires the specific "digital transformation consulting keywords" for objective verification.]
+
+Test Data:
+Expected SEO Keywords: [Open Question 5]
+
+Steps:
+1. View the page source code (e.g., right-click -> "View page source") or use browser developer tools (e.g., "Elements" tab for `<head>` section).
+2. Locate the `<title>` tag within the `<head>` section of the HTML.
+3. Examine the text content of the `<title>` tag.
+
+Expected Results:
+1. The text content of the `<title>` tag is present.
+2. The Meta Title contains relevant keywords related to "digital transformation consulting" and accurately describes the page content for search engines, adhering to best practices for length and readability.
+
+References: AC7, FR26
+Priority: P1
+Type: SEO / Technical
+
+---
+
+Test Case Title: Verify Meta Description is optimized for digital transformation consulting keywords.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+[Note: This test case is blocked by Open Question 5, which requires the specific "digital transformation consulting keywords" for objective verification.]
+
+Test Data:
+Expected SEO Keywords: [Open Question 5]
+
+Steps:
+1. View the page source code or use browser developer tools.
+2. Locate the `<meta name="description" ...>` tag within the `<head>` section.
+3. Examine the `content` attribute of the meta description tag.
+
+Expected Results:
+1. The `<meta name="description" ...>` tag is present with a `content` attribute.
+2. The Meta Description contains relevant keywords related to "digital transformation consulting" and provides a concise, compelling summary of the page content for search engines, adhering to best practices for length and readability.
+
+References: AC7, FR27
+Priority: P1
+Type: SEO / Technical
+
+---
+
+Test Case Title: Verify OG tags are optimized for digital transformation consulting keywords.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+[Note: This test case is blocked by Open Question 5, which requires the specific "digital transformation consulting keywords" for objective verification.]
+
+Test Data:
+Expected SEO Keywords: [Open Question 5]
+
+Steps:
+1. View the page source code or use browser developer tools.
+2. Locate the `<meta property="og:..." ...>` tags (e.g., `og:title`, `og:description`, `og:image`, `og:url`) within the `<head>` section.
+3. Examine the `content` attributes of the relevant Open Graph (OG) tags.
+
+Expected Results:
+1. Key Open Graph (OG) tags (e.g., `og:title`, `og:description`, `og:image`, `og:url`) are present.
+2. The `og:title` and `og:description` content attributes contain relevant keywords related to "digital transformation consulting" and provide accurate, engaging information for social media sharing.
+3. The `og:image` and `og:url` tags correctly reference a relevant image and the page URL, respectively.
+
+References: AC7, FR28
+Priority: P1
+Type: SEO / Technical
+
+---
+
+Test Case Title: Verify analytics tracking is triggered upon CTA clicks.
+Preconditions:
+The user has navigated to the "Digital Transformation" service page.
+An analytics system (e.g., Google Analytics, Adobe Analytics) is integrated and configured to track CTA clicks.
+CTA buttons are present and clickable on the page.
+
+Test Data:
+Expected Analytics Event Name for CTA Clicks: [Open Question: What are the exact analytics event names and/or parameters for CTA click tracking?]
+
+Steps:
+1. Open browser developer tools and navigate to the network tab (or console tab if events are logged there) to monitor network requests or analytics events.
+2. Click on a primary Call-to-Action (CTA) button on the page (e.g., "Schedule a Free Consultation", the embedded "Schedule a complimentary assessment" button).
+3. Observe the network requests made or the console output in the developer tools.
+
+Expected Results:
+1. Upon clicking a CTA button, a specific analytics event (e.g., a network request to the analytics endpoint, or a console log indicating event dispatch with specific parameters) is successfully triggered and sent to the configured analytics system.
+
+References: FR25 (implied)
+Priority: P1
+Type: Integration
+
+---
+
+# Coverage Map
+
+**AC1 – Navigation Integration**
+*   Verify "Services" menu item is present in global top navigation.
+*   Verify "Digital Transformation" is present in "Services" dropdown menu.
+*   Click "Digital Transformation" and verify correct page loads.
+*   Verify "Digital Transformation" page loads without any errors.
+
+**AC2 – Page Structure & Content**
+*   Verify H1 title "Digital Transformation Consulting" is present.
+*   Verify introductory summary for digital transformation practice is present.
+
+**AC3 – Service Offerings Section**
+*   Verify "Service Offerings" section is clearly present.
+*   Verify all 7 transformation pillars are listed in the "Service Offerings" section.
+*   Verify each transformation pillar has a short description of its business value.
+
+**AC4 – Content Explanation Blocks**
+*   Verify "What Is Digital Transformation?" explainer block is present.
+*   Verify "Digital Maturity Assessment" section is present.
+*   Verify embedded CTA button for "Schedule a complimentary assessment" is present and clickable within the "Digital Maturity Assessment" section.
+*   Verify "What Is Digital Transformation?" explainer content is concise and reflects modernization.
+
+**AC5 – Visual & UX Considerations**
+*   Verify hero image/banner related to digital consulting is present.
+*   Verify consistent styling with main site (fonts, colors, spacing).
+*   Verify UX flows facilitate easy scanning and comprehension.
+
+**AC6 – Lead Generation & CTAs**
+*   Verify primary CTA button(s) (e.g., "Schedule a Free Consultation") are clearly visible.
+*   Verify all CTAs link to the correct contact form/lead capture/booking service.
+*   Verify CTA button texts match specified examples like "Schedule a Free Consultation" and/or "Request Digital Maturity Assessment".
+
+**AC7 – SEO & Metadata**
+*   Verify page URL is exactly `/services/digital-transformation-consulting`.
+*   Verify Meta Title is optimized for digital transformation consulting keywords.
+*   Verify Meta Description is optimized for digital transformation consulting keywords.
+*   Verify OG tags are optimized for digital transformation consulting keywords.
+
+**FR1 – Page must present clear, structured, and comprehensive info**
+*   Verify introductory summary for digital transformation practice is present.
+
+**FR3 – Page accessible from main navigation**
+*   Verify "Services" menu item is present in global top navigation.
+*   Verify "Digital Transformation" is present in "Services" dropdown menu.
+*   Click "Digital Transformation" and verify correct page loads.
+
+**FR5 – Page content supports customer understanding**
+*   Verify introductory summary for digital transformation practice is present.
+
+**FR6 – Global top navigation displays “Services” with dropdown**
+*   Verify "Services" menu item is present in global top navigation.
+
+**FR7 – Dropdown includes “Digital Transformation”**
+*   Verify "Digital Transformation" is present in "Services" dropdown menu.
+
+**FR8 – Clicking “Digital Transformation” loads page**
+*   Click "Digital Transformation" and verify correct page loads.
+
+**FR9 – Page load without errors**
+*   Verify "Digital Transformation" page loads without any errors.
+
+**FR10 – H1 with "Digital Transformation Consulting"**
+*   Verify H1 title "Digital Transformation Consulting" is present.
+
+**FR11 – H1 text matches service title**
+*   Verify H1 title "Digital Transformation Consulting" is present.
+
+**FR12 – Introductory summary included**
+*   Verify introductory summary for digital transformation practice is present.
+
+**FR13 – Section clearly listing key transformation pillars**
+*   Verify "Service Offerings" section is clearly present.
+
+**FR14 – Listed transformation pillars (all 7)**
+*   Verify all 7 transformation pillars are listed in the "Service Offerings" section.
+
+**FR15 – Each pillar has short description of business value**
+*   Verify each transformation pillar has a short description of its business value.
+
+**FR16 – Dedicated explainer block on “What Is Digital Transformation?”**
+*   Verify "What Is Digital Transformation?" explainer block is present.
+
+**FR17 – Explainer block wording concise and reflects modernization**
+*   Verify "What Is Digital Transformation?" explainer content is concise and reflects modernization.
+
+**FR18 – Section on “Digital Maturity Assessment”**
+*   Verify "Digital Maturity Assessment" section is present.
+
+**FR19 – “Digital Maturity Assessment” section includes embedded CTA**
+*   Verify embedded CTA button for "Schedule a complimentary assessment" is present and clickable within the "Digital Maturity Assessment" section.
+
+**FR20 – Hero image/banner related to digital consulting**
+*   Verify hero image/banner related to digital consulting is present.
+
+**FR21 – Page styling consistent with main site**
+*   Verify consistent styling with main site (fonts, colors, spacing).
+
+**FR22 – UX flows facilitate easy scanning and comprehension**
+*   Verify UX flows facilitate easy scanning and comprehension.
+
+**FR23 – Clearly visible CTA button(s)**
+*   Verify primary CTA button(s) (e.g., "Schedule a Free Consultation") are clearly visible.
+
+**FR24 – CTA button texts match specified examples**
+*   Verify CTA button texts match specified examples like "Schedule a Free Consultation" and/or "Request Digital Maturity Assessment".
+
+**FR25 – All CTAs link to contact form/lead capture/booking service**
+*   Verify all CTAs link to the correct contact form/lead capture/booking service.
+*   Verify analytics tracking is triggered upon CTA clicks. (Implied)
+
+**FR26 – Meta Title optimized for keywords**
+*   Verify Meta Title is optimized for digital transformation consulting keywords.
+
+**FR27 – Meta Description optimized for keywords**
+*   Verify Meta Description is optimized for digital transformation consulting keywords.
+
+**FR28 – OG tags optimized for keywords**
+*   Verify OG tags are optimized for digital transformation consulting keywords.
+
+**FR29 – Page URL is correct**
+*   Click "Digital Transformation" and verify correct page loads.
+*   Verify page URL is exactly `/services/digital-transformation-consulting`.
+
+**Risk – Page loading "without errors"**
+*   Verify "Digital Transformation" page loads without any errors.
+
+---
+
+# Open Questions
+
+1.  **Original Q1:** The main description lists service offerings as "strategic planning, program leadership, digital road mapping, generative AI consulting, change management, and customized training." AC3 lists "Strategic planning, Platform evaluations, Program leadership, Digital road mapping, Generative AI consulting, Change management, Customized training." Is "Platform evaluations" a new offering, or was it inadvertently omitted from the description's list? (Blocking TC: "Verify all 7 transformation pillars are listed in the 'Service Offerings' section.")
+2.  **Original Q2:** What specific styling guidelines or design system references must be followed for "Consistent styling with main site (fonts, colors, spacing)"? (Blocking TC: "Verify consistent styling with main site (fonts, colors, spacing).")
+3.  **Original Q3:** Are there specific requirements or examples for "UX flows that facilitate easy scanning and comprehension"? (Blocking TC: "Verify UX flows facilitate easy scanning and comprehension.")
+4.  **Original Q4:** What are the exact URLs or integration points for the "contact form, lead capture module, or calendar booking service" that CTAs must link to? (Blocking TC: "Verify all CTAs link to the correct contact form/lead capture/booking service.")
+5.  **Original Q5:** What are the specific "digital transformation consulting keywords" for SEO optimization of Meta Title, Meta Description, and OG tags? (Blocking TCs: "Verify Meta Title is optimized...", "Verify Meta Description is optimized...", "Verify OG tags are optimized...")
+6.  **New Q1 (from Agent C):** What are the exact analytics event names and/or parameters expected to be triggered upon CTA clicks for the "Digital Transformation" page? (Blocking TC: "Verify analytics tracking is triggered upon CTA clicks.")
+
+# Assumptions
+
+1.  The "top navigation menu" and "global top navigation (header)" refer to the same navigational element on the website.
+2.  "Object Edge Homepage – Services list" is the authoritative source for the structure and content of the "Services" dropdown menu.
