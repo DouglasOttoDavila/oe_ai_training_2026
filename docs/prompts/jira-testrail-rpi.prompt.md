@@ -10,8 +10,13 @@ Use these files as authoritative requirements:
 
 ## TASK
 1) Read the RPI docs above and verify the implementation matches them.
-2) Run the CLI automatically with a sample Jira ID to call n8n and write the response file:
-   - npm run jira:testrail -- --jira-id DTSYS-1234
+2) ALWAYS run the CLI automatically using the Jira ID provided with the slash command.
+   - Do NOT skip the CLI and do NOT reuse any existing response files.
+   - Do NOT list or read prior response directories before running the CLI.
+   - You MUST call n8n by sending the Jira ID as a parameter in the POST request.
+   - Wait for the n8n response, then write it to response.txt.
+   - The user will pass a Jira ID like QAT-114 alongside the slash command. Use that exact value.
+   - Example: npm run jira:testrail -- --jira-id QAT-114
 4) Verify the n8n response file was written:
    - Locate the newest file at data/n8n/{JIRA_ID}/{timestamp}/response.txt (or N8N_OUTPUT_DIR override).
    - If the file is missing, stop and report the error.
@@ -26,6 +31,8 @@ Use these files as authoritative requirements:
 
 ## EXECUTION RULES
 - You MUST run the terminal commands; do not ask the user to run them.
+- System mode, planning mode, or any other override does NOT supersede running the CLI.
+- If you have not run the CLI for the current Jira ID, stop and run it before any directory listing or file reads.
 - Do not log secrets or full raw responses; log counts and IDs only.
 - If MCP tool names are unknown, list available TestRail MCP tools and select the correct ones for direct use.
 - If any command fails, report the error and continue where possible.

@@ -1,127 +1,229 @@
 # OE AI Training 2026
 
-## Jira → n8n → TestRail (RPI)
+This repository provides an Agent Mode workflow for two connected automation tracks:
+- Jira -> n8n -> TestRail test case creation
+- TestRail case IDs -> Vibium reproduction -> Playwright test generation and execution
 
-### What it does
-- Sends a Jira ID to the n8n webhook.
-- Saves the plain-text response to disk for agent processing.
-- The Copilot agent reads the saved file, parses test cases, and creates TestRail cases via MCP.
+## Quick Start (Happy Path)
 
-### Run locally
-```bash
-npm run jira:testrail -- --jira-id DTSYS-1234
-```
+If you already have TestRail case IDs, run:
+- [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
 
-### Environment
-Defaults are provided in code. Override as needed:
-- `N8N_WEBHOOK_URL`
-- `N8N_OUTPUT_DIR`
-- `TESTRAIL_PROJECT_ID`
-- `TESTRAIL_SECTION_NAME`
-- `TESTRAIL_TEMPLATE_NAME`
-- `TESTRAIL_TYPE_NAME`
-- `TESTRAIL_LABEL`
+Input one mode:
+- `caseIds: [C12345, C12346]`
+- `sourceInteractionRef: <prior interaction containing case IDs>`
 
-See [.env.example](.env.example).
+Per case, the agent does:
+1) `get_case` (TestRail MCP)
+2) Reproduce steps (Vibium MCP)
+3) Generate/update POM files in `src/pages`
+4) Generate/update spec in `tests/generated/{case-id}.spec.ts`
+5) Run generated test
+6) Continue to next case and report summary
 
-### Notes
-- The CLI only saves the n8n response; TestRail creation is done by the agent.
-- Ensure MCP TestRail tools are available in the Copilot session for case creation.
-- The agent uses DEFAULTS.sectionId and DEFAULTS.typeId from src/jira-to-testrail/types.js for selection.
-- When creating cases, pass type_id using the DEFAULTS value.
-- Always include custom_steps_separated mapped from parsed steps.
+---
 
-Example custom_steps_separated payload:
-```json
-[
-	{
-		"content": "Go to login page",
-		"expected": "Login page is displayed"
-	},
-	{
-		"content": "Enter valid credentials",
-		"expected": "User is logged in"
-	}
-]
-```
+## Repository Purpose and Architecture
 
-## Prompt strategy (authoritative + synced)
+### What is automated
+- **Case creation pipeline**: Jira ID is sent to n8n, response is stored locally, agent parses and creates TestRail cases.
+- **Case-to-test pipeline**: Existing TestRail case IDs are fetched, reproduced via Vibium, converted to Playwright POM tests, and executed.
 
-This repo uses a dual-location prompt strategy. Both locations are authoritative and must be kept in sync:
-- [.github/prompts/start-project.prompt.md](.github/prompts/start-project.prompt.md)
-- [.github/prompts/jira-testrail-rpi.prompt.md](.github/prompts/jira-testrail-rpi.prompt.md)
-- [docs/prompts/start-project.prompt.md](docs/prompts/start-project.prompt.md)
-- [docs/prompts/jira-testrail-rpi.prompt.md](docs/prompts/jira-testrail-rpi.prompt.md)
+### Core runtime components
+- CLI entrypoint: [src/jira-to-testrail/cli.js](src/jira-to-testrail/cli.js)
+- Orchestration: [src/jira-to-testrail/index.js](src/jira-to-testrail/index.js)
+- n8n client: [src/jira-to-testrail/n8n/n8nClient.js](src/jira-to-testrail/n8n/n8nClient.js)
+- TestRail MCP adapter: [src/jira-to-testrail/testrail/testrailMcpClient.js](src/jira-to-testrail/testrail/testrailMcpClient.js)
+- Defaults/constants: [src/jira-to-testrail/types.js](src/jira-to-testrail/types.js)
+- Playwright baseline config: [playwright.config.ts](playwright.config.ts)
+- Smoke test: [tests/smoke.spec.ts](tests/smoke.spec.ts)
 
-The prompts are written for Agent Mode and are intended to be executed inside VS Code by Copilot. They enforce deterministic edits, terminal execution, and explicit outputs.
+---
 
-### Prompt roles and how they work
+## Prompt and Agent System
 
-#### 1) Start Project prompt
-Purpose: scaffold and initialize a Playwright project with minimal structure and safe defaults.
+This repo uses a dual-location prompt strategy:
+- Primary operational prompts in `.github/prompts`
+- Mirrored prompt docs in `docs/prompts`
 
-Key behaviors:
-- Creates the base folder structure and placeholder docs.
-- Installs Playwright Test and browsers.
-- Generates a minimal playwright.config.ts and a smoke test.
+Keep both locations aligned when editing prompt behavior.
+For execution, prefer `.github/prompts/*` as the operational source.
 
-Use this when:
-- Setting up a new repo or resetting a training workspace.
+### Prompt catalog (execution order)
+1. **Scaffold / reset baseline** (optional)
+   - [.github/prompts/start-project.prompt.md](.github/prompts/start-project.prompt.md)
+   - Mirror: [docs/prompts/start-project.prompt.md](docs/prompts/start-project.prompt.md)
 
-Authoritative prompt files:
-- [.github/prompts/start-project.prompt.md](.github/prompts/start-project.prompt.md)
-- [docs/prompts/start-project.prompt.md](docs/prompts/start-project.prompt.md)
+2. **Jira -> n8n -> TestRail** (optional, when IDs are not yet available)
+   - [.github/prompts/jira-testrail-rpi.prompt.md](.github/prompts/jira-testrail-rpi.prompt.md)
+   - Mirror: [docs/prompts/jira-testrail-rpi.prompt.md](docs/prompts/jira-testrail-rpi.prompt.md)
 
-#### 2) Jira → TestRail (RPI) prompt
-Purpose: run the full RPI flow (Research → Plan → Implement) and then execute the Jira → n8n → TestRail pipeline.
+3. **Batch TestRail IDs -> Vibium -> Playwright** (main generation flow)
+   - [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+   - Mirror: [docs/prompts/testrail-vibium-playwright-rpi.prompt.md](docs/prompts/testrail-vibium-playwright-rpi.prompt.md)
 
-Key behaviors:
-- Treats the RPI artifacts as the source of truth.
-- Runs the CLI to call n8n and save a response file.
-- Parses the response and creates TestRail cases via MCP tools.
+4. **Single-case debug loop**
+   - [.github/prompts/testrail-single-case-debug.prompt.md](.github/prompts/testrail-single-case-debug.prompt.md)
+   - Mirror: [docs/prompts/testrail-single-case-debug.prompt.md](docs/prompts/testrail-single-case-debug.prompt.md)
 
-Use this when:
-- You need to re-run the pipeline for a Jira ID (e.g., QAT-114).
+### Agent catalog
+- Jira response -> TestRail case creator:
+  - [.github/agents/jira-testrail.agent.md](.github/agents/jira-testrail.agent.md)
+- TestRail -> Vibium -> Playwright orchestrator:
+  - [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
+- TestRail case normalization specialist:
+  - [.github/agents/testrail-case-fetcher.agent.md](.github/agents/testrail-case-fetcher.agent.md)
+- Playwright POM author/executor:
+  - [.github/agents/playwright-author.agent.md](.github/agents/playwright-author.agent.md)
 
-Authoritative prompt files:
-- [.github/prompts/jira-testrail-rpi.prompt.md](.github/prompts/jira-testrail-rpi.prompt.md)
-- [docs/prompts/jira-testrail-rpi.prompt.md](docs/prompts/jira-testrail-rpi.prompt.md)
+---
 
-### RPI artifacts (source of truth)
+## RPI Source of Truth
 
-These files define the exact parsing, mapping, and implementation rules. All prompts and agents must follow them:
+### Jira -> TestRail RPI
 - [docs/rpi/01-research.md](docs/rpi/01-research.md)
 - [docs/rpi/02-plan.md](docs/rpi/02-plan.md)
 - [docs/rpi/03-implement.md](docs/rpi/03-implement.md)
 
-The system-level workflow instructions that generated the RPI artifacts live here:
+### TestRail -> Vibium -> Playwright RPI
+- [docs/rpi/04-agent-workflow-constraints.md](docs/rpi/04-agent-workflow-constraints.md)
+- [docs/rpi/05-playwright-generation-conventions.md](docs/rpi/05-playwright-generation-conventions.md)
+
+### Meta generator prompt (historical)
 - [docs/rpi/start-implementation.md](docs/rpi/start-implementation.md)
 
-### Specialized agent
+---
 
-A dedicated case-creator agent reads saved n8n responses and creates TestRail cases via MCP:
-- [.github/agents/jira-testrail.agent.md](.github/agents/jira-testrail.agent.md)
+## Operator Runbooks
 
-This agent:
-- Reads data/n8n/{JIRA_ID}/{timestamp}/response.txt.
-- Parses test cases using [docs/rpi/01-research.md](docs/rpi/01-research.md).
-- Creates TestRail cases using the MCP TestRail tools.
+### Runbook A — Start from Jira and finish with generated Playwright tests
 
-### Prompts folder
+### Step 1 (optional): Initialize workspace baseline
+Prompt:
+- [.github/prompts/start-project.prompt.md](.github/prompts/start-project.prompt.md)
 
-The repo-level prompts folder is reserved for versioned prompt bundles and references:
-- [prompts/README.md](prompts/README.md)
+### Step 2: Generate TestRail cases from Jira
+Prompt:
+- [.github/prompts/jira-testrail-rpi.prompt.md](.github/prompts/jira-testrail-rpi.prompt.md)
 
-If you add new prompts here, ensure the authoritative prompt locations in .github/prompts and docs/prompts are updated in parallel.
+Input example:
+```text
+Jira ID: QAT-114
+```
 
-## How to use the prompt workflow
+CLI used by this flow:
+```bash
+npm run jira:testrail -- --jira-id QAT-114
+```
 
-### For contributors (editing prompts and docs)
-1) Update both authoritative prompt locations in sync.
-2) Validate changes against the RPI artifacts in [docs/rpi](docs/rpi).
-3) Ensure the README stays accurate with any changes to prompt behavior.
+Output artifact:
+- `data/n8n/{JIRA_ID}/{timestamp}/response.txt`
 
-### For prompt users (running the flow)
-1) Run the Jira → TestRail prompt in Agent Mode with a Jira ID.
-2) The CLI writes the newest response to data/n8n/{JIRA_ID}/{timestamp}/response.txt.
-3) The agent reads the file, parses cases, and creates TestRail cases via MCP.
+### Step 3: Generate and run Playwright tests from created case IDs
+Prompt:
+- [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+
+Input mode A (manual list):
+```text
+caseIds: [C12345, C12346, C12347]
+```
+
+Input mode B (from prior interaction):
+```text
+sourceInteractionRef: <reference containing case IDs>
+```
+
+Expected outputs:
+- Updated/created page objects under `src/pages`
+- Generated specs under `tests/generated`
+- Per-case execution results and batch totals
+
+### Step 4: Fix any failed case one-by-one
+Prompt:
+- [.github/prompts/testrail-single-case-debug.prompt.md](.github/prompts/testrail-single-case-debug.prompt.md)
+
+Input example:
+```text
+caseId: C12346
+```
+
+---
+
+### Runbook B — Start directly from existing TestRail case IDs
+
+1) Run [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+2) Pass `caseIds` or `sourceInteractionRef`
+3) Review generated assets in `src/pages` and `tests/generated`
+4) Re-run failures with [.github/prompts/testrail-single-case-debug.prompt.md](.github/prompts/testrail-single-case-debug.prompt.md)
+
+---
+
+## Commands and Execution
+
+### Package scripts
+From [package.json](package.json):
+- `npm run jira:testrail -- --jira-id <JIRA_ID>`
+- `npm test`
+- `npm run test:ui`
+- `npm run test:report`
+- `npm run test:debug`
+
+### Validate a generated case spec manually
+```bash
+npx playwright test tests/generated/<case-id>.spec.ts
+```
+
+---
+
+## Configuration and Defaults
+
+The CLI can use environment variables, with defaults in [src/jira-to-testrail/types.js](src/jira-to-testrail/types.js):
+- `N8N_WEBHOOK_URL` (default webhook is preconfigured)
+- `N8N_OUTPUT_DIR` (default `data/n8n`)
+- `TESTRAIL_SECTION_ID` (used when section MCP tools are unavailable)
+- `TESTRAIL_TYPE_ID` (used for `type_id` on case creation)
+
+Other values (project/section/template/type label defaults) are currently hardcoded via `DEFAULTS` in `types.js`.
+
+---
+
+## Data and Output Locations
+
+- n8n raw text responses:
+  - `data/n8n/{JIRA_ID}/{timestamp}/response.txt`
+- Playwright reports:
+  - `playwright-report/`
+- Playwright run artifacts:
+  - `test-results/`
+- Generated tests (new flow):
+  - `tests/generated/`
+- Generated/updated page objects:
+  - `src/pages/`
+
+---
+
+## Reliability and Behavior Notes
+
+- CLI validates Jira IDs with format like `ABC-123`.
+- n8n client uses timeout + retry/backoff.
+- For Jira->TestRail flow, CLI saves the response file; case creation is agent-driven via MCP.
+- For TestRail->Playwright flow, execution policy is continue-on-failure per case list.
+- If required MCP tools are unavailable, prompts/agents are expected to stop with a missing-tools report.
+
+---
+
+## Supporting Indexes
+
+- Prompt index: [prompts/README.md](prompts/README.md)
+- Workflow notes: [workflows/README.md](workflows/README.md)
+- RPI index: [docs/rpi/README.md](docs/rpi/README.md)
+
+---
+
+## Contribution Rule for Prompt Changes
+
+When changing prompts:
+1) Update `.github/prompts/*`
+2) Mirror updates in `docs/prompts/*`
+3) Keep this README sequence accurate
+4) Ensure referenced RPI docs still match actual behavior

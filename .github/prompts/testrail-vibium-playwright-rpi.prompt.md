@@ -1,0 +1,39 @@
+# .prompt.md — TestRail Case IDs -> Vibium Repro -> Playwright (RPI)
+# Mode: Agent Mode (Copilot)
+# Goal: For each TestRail case ID, fetch case details, reproduce with Vibium, generate Playwright POM test, run it, then continue.
+
+## SOURCE OF TRUTH
+Use these files as authoritative requirements:
+- docs/rpi/04-agent-workflow-constraints.md
+- docs/rpi/05-playwright-generation-conventions.md
+
+## INPUT MODES
+Provide one of:
+- `caseIds`: manually entered list of TestRail case IDs
+- `sourceInteractionRef`: previous interaction reference that contains generated case IDs
+
+If both are provided, use `caseIds`.
+
+## TASK
+1) Resolve the case ID list in original order.
+2) For each case ID:
+   - Call TestRail MCP `get_case`.
+   - Normalize context and executable steps.
+   - Use Vibium MCP to navigate and reproduce steps on the target page.
+   - Generate/update Playwright page objects under `src/pages`.
+   - Generate/update `tests/generated/{case-id}.spec.ts`.
+   - Run the generated test immediately.
+   - Record status and continue to next ID even if current case fails.
+3) Return a final batch summary with per-case outputs.
+
+## EXECUTION RULES
+- You MUST perform tool actions and command execution directly; do not ask user to run commands.
+- Continue-on-failure is default and mandatory unless user explicitly overrides.
+- Do not log secrets or copy full raw payloads in output.
+- Keep generated code aligned with repository style and POM conventions.
+
+## OUTPUT FORMAT
+1) Short summary.
+2) Case-by-case result list: case ID, title, generated files, run status, failure reason if any.
+3) Aggregate totals: passed/failed/skipped.
+4) Next step suggestion.
