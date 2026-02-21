@@ -3,10 +3,10 @@
 Versioned prompts live here.
 
 ## Authoritative prompt index
-- [.github/prompts/start-project.prompt.md](../.github/prompts/start-project.prompt.md)
-- [.github/prompts/jira-testrail-rpi.prompt.md](../.github/prompts/jira-testrail-rpi.prompt.md)
-- [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](../.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
-- [.github/prompts/testrail-single-case-debug.prompt.md](../.github/prompts/testrail-single-case-debug.prompt.md)
+- [.github/prompts/01-start-project.prompt.md](../.github/prompts/01-start-project.prompt.md)
+- [.github/prompts/02-jira-testrail-rpi.prompt.md](../.github/prompts/02-jira-testrail-rpi.prompt.md)
+- [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](../.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
+- [.github/prompts/03-testrail-single-case-debug.prompt.md](../.github/prompts/03-testrail-single-case-debug.prompt.md)
 - [docs/prompts/start-project.prompt.md](../docs/prompts/start-project.prompt.md)
 - [docs/prompts/jira-testrail-rpi.prompt.md](../docs/prompts/jira-testrail-rpi.prompt.md)
 - [docs/prompts/testrail-vibium-playwright-rpi.prompt.md](../docs/prompts/testrail-vibium-playwright-rpi.prompt.md)

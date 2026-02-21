@@ -7,7 +7,7 @@ This repository provides an Agent Mode workflow for two connected automation tra
 ## Quick Start (Happy Path)
 
 If you already have TestRail case IDs, run:
-- [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+- [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
 
 Input one mode:
 - `caseIds: [C12345, C12346]`
@@ -51,19 +51,19 @@ For execution, prefer `.github/prompts/*` as the operational source.
 
 ### Prompt catalog (execution order)
 1. **Scaffold / reset baseline** (optional)
-   - [.github/prompts/start-project.prompt.md](.github/prompts/start-project.prompt.md)
+  - [.github/prompts/01-start-project.prompt.md](.github/prompts/01-start-project.prompt.md)
    - Mirror: [docs/prompts/start-project.prompt.md](docs/prompts/start-project.prompt.md)
 
 2. **Jira -> n8n -> TestRail** (optional, when IDs are not yet available)
-   - [.github/prompts/jira-testrail-rpi.prompt.md](.github/prompts/jira-testrail-rpi.prompt.md)
+  - [.github/prompts/02-jira-testrail-rpi.prompt.md](.github/prompts/02-jira-testrail-rpi.prompt.md)
    - Mirror: [docs/prompts/jira-testrail-rpi.prompt.md](docs/prompts/jira-testrail-rpi.prompt.md)
 
 3. **Batch TestRail IDs -> Vibium -> Playwright** (main generation flow)
-   - [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+  - [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
    - Mirror: [docs/prompts/testrail-vibium-playwright-rpi.prompt.md](docs/prompts/testrail-vibium-playwright-rpi.prompt.md)
 
 4. **Single-case debug loop**
-   - [.github/prompts/testrail-single-case-debug.prompt.md](.github/prompts/testrail-single-case-debug.prompt.md)
+  - [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
    - Mirror: [docs/prompts/testrail-single-case-debug.prompt.md](docs/prompts/testrail-single-case-debug.prompt.md)
 
 ### Agent catalog
@@ -100,11 +100,11 @@ For execution, prefer `.github/prompts/*` as the operational source.
 
 ### Step 1 (optional): Initialize workspace baseline
 Prompt:
-- [.github/prompts/start-project.prompt.md](.github/prompts/start-project.prompt.md)
+- [.github/prompts/01-start-project.prompt.md](.github/prompts/01-start-project.prompt.md)
 
 ### Step 2: Generate TestRail cases from Jira
 Prompt:
-- [.github/prompts/jira-testrail-rpi.prompt.md](.github/prompts/jira-testrail-rpi.prompt.md)
+- [.github/prompts/02-jira-testrail-rpi.prompt.md](.github/prompts/02-jira-testrail-rpi.prompt.md)
 
 Input example:
 ```text
@@ -121,7 +121,7 @@ Output artifact:
 
 ### Step 3: Generate and run Playwright tests from created case IDs
 Prompt:
-- [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+- [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
 
 Input mode A (manual list):
 ```text
@@ -140,7 +140,7 @@ Expected outputs:
 
 ### Step 4: Fix any failed case one-by-one
 Prompt:
-- [.github/prompts/testrail-single-case-debug.prompt.md](.github/prompts/testrail-single-case-debug.prompt.md)
+- [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
 
 Input example:
 ```text
@@ -151,10 +151,10 @@ caseId: C12346
 
 ### Runbook B — Start directly from existing TestRail case IDs
 
-1) Run [.github/prompts/testrail-vibium-playwright-rpi.prompt.md](.github/prompts/testrail-vibium-playwright-rpi.prompt.md)
+1) Run [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
 2) Pass `caseIds` or `sourceInteractionRef`
 3) Review generated assets in `src/pages` and `tests/generated`
-4) Re-run failures with [.github/prompts/testrail-single-case-debug.prompt.md](.github/prompts/testrail-single-case-debug.prompt.md)
+4) Re-run failures with [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
 
 ---
 
