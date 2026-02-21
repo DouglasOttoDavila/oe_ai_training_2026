@@ -11,7 +11,3 @@ Versioned prompts live here.
 	- Agent: [.github/agents/testrail-vibium-playwright.agent.md](../.github/agents/testrail-vibium-playwright.agent.md)
 - [.github/prompts/03-testrail-single-case-debug.prompt.md](../.github/prompts/03-testrail-single-case-debug.prompt.md)
 	- Agent: [.github/agents/testrail-vibium-playwright.agent.md](../.github/agents/testrail-vibium-playwright.agent.md)
-- [docs/prompts/start-project.prompt.md](../docs/prompts/start-project.prompt.md)
-- [docs/prompts/jira-testrail-rpi.prompt.md](../docs/prompts/jira-testrail-rpi.prompt.md)
-- [docs/prompts/testrail-vibium-playwright-rpi.prompt.md](../docs/prompts/testrail-vibium-playwright-rpi.prompt.md)
-- [docs/prompts/testrail-single-case-debug.prompt.md](../docs/prompts/testrail-single-case-debug.prompt.md)

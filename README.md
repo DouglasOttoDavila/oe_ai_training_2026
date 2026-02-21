@@ -42,32 +42,23 @@ Per case, the agent does:
 
 ## Prompt and Agent System
 
-This repo uses a dual-location prompt strategy:
-- Primary operational prompts in `.github/prompts`
-- Mirrored prompt docs in `docs/prompts`
-
-Keep both locations aligned when editing prompt behavior.
-For execution, prefer `.github/prompts/*` as the operational source.
+This repo uses `.github/prompts` as the operational source of prompt files.
 
 ### Prompt catalog (execution order)
 1. **Scaffold / reset baseline** (optional)
   - [.github/prompts/01-start-project.prompt.md](.github/prompts/01-start-project.prompt.md)
-   - Mirror: [docs/prompts/start-project.prompt.md](docs/prompts/start-project.prompt.md)
   - Agent: Built-in default (no custom agent selection)
 
 2. **Jira -> n8n -> TestRail** (optional, when IDs are not yet available)
   - [.github/prompts/02-jira-testrail-rpi.prompt.md](.github/prompts/02-jira-testrail-rpi.prompt.md)
-   - Mirror: [docs/prompts/jira-testrail-rpi.prompt.md](docs/prompts/jira-testrail-rpi.prompt.md)
   - Agent: [.github/agents/jira-testrail.agent.md](.github/agents/jira-testrail.agent.md)
 
 3. **Batch TestRail IDs -> Vibium -> Playwright** (main generation flow)
   - [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
-   - Mirror: [docs/prompts/testrail-vibium-playwright-rpi.prompt.md](docs/prompts/testrail-vibium-playwright-rpi.prompt.md)
   - Agent: [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 4. **Single-case debug loop**
   - [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
-   - Mirror: [docs/prompts/testrail-single-case-debug.prompt.md](docs/prompts/testrail-single-case-debug.prompt.md)
   - Agent: [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 ### Agent catalog
@@ -239,6 +230,5 @@ Other values (project/section/template/type label defaults) are currently hardco
 
 When changing prompts:
 1) Update `.github/prompts/*`
-2) Mirror updates in `docs/prompts/*`
-3) Keep this README sequence accurate
-4) Ensure referenced RPI docs still match actual behavior
+2) Keep this README sequence accurate
+3) Ensure referenced RPI docs still match actual behavior
