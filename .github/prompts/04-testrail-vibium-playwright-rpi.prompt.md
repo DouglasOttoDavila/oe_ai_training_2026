@@ -33,6 +33,7 @@ If both are provided, use `caseIds`.
 - Continue-on-failure is default and mandatory unless user explicitly overrides.
 - Do not log secrets or copy full raw payloads in output.
 - Keep generated code aligned with repository style and POM conventions.
+- Use `BASE_URL` from `.env` for navigation target host; avoid hardcoded hosts in generated code.
 - For responsive UI states, selectors must handle link/button variants and avoid blind `.first()` on role locators when hidden duplicates are possible.
 - If running in fallback mode, include `evidenceSource: playwright-fallback` in the case result.
 

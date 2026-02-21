@@ -32,6 +32,7 @@ If both are present, `caseIds` wins.
 - Continue-on-failure across the full input list.
 - Do not skip test execution after generation.
 - Keep generated code aligned with repo style and Playwright POM conventions.
+- Use `BASE_URL` from `.env` for navigation target host; do not hardcode hosts in generated assets.
 - Do not log secrets or full raw payloads.
 
 ## Result format

@@ -55,7 +55,7 @@ Create or update `playwright.config.ts` with:
   - webkit
 - outputDir for test results under: `./test-results`
 - html report output under: `./playwright-report`
-- baseURL: set to "http://localhost:3000" (comment that this is placeholder and can be changed later)
+- baseURL: set from `process.env.BASE_URL` (from `.env`), with a safe fallback placeholder only when missing
 
 Add npm scripts to package.json (create if missing):
 - "test": "playwright test"

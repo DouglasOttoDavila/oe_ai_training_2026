@@ -60,6 +60,12 @@ Example:
   - `npx playwright test tests/generated/{case-id}-{readable-kebab-title}.spec.ts`
 - Capture pass/fail and first actionable error for reporting.
 
+## Base URL Configuration
+- The automation runtime must use `BASE_URL` from `.env` via Playwright config (`process.env.BASE_URL`).
+- Generated specs and page objects should navigate with relative paths (for example `page.goto('/')`), relying on configured `baseURL`.
+- Do not hardcode absolute hostnames (for example `http://localhost:3000`) in generated tests.
+- If `BASE_URL` is missing, report a clear configuration failure and required next action.
+
 ## Error Handling
 - If generation succeeds but execution fails, keep files and mark case `failed` with reason.
 - If a case cannot be translated (missing steps/context), create a minimal pending spec and mark `skipped` with rationale.

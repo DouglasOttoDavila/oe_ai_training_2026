@@ -21,6 +21,7 @@ You generate reliable Playwright tests from normalized test case models.
 - Do not generate generic shared step-runner wrappers; write proper Playwright spec structure per case.
 - Keep edits minimal and scoped to the active case.
 - Do not modify unrelated test assets.
+- Use `BASE_URL` from `.env` for target host resolution and avoid hardcoded hostnames in generated files.
 
 ## Execution command
 - `npx playwright test tests/generated/{case-id}-{readable-kebab-title}.spec.ts`

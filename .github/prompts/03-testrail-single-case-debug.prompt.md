@@ -12,6 +12,7 @@
 ## TASK
 1) Fetch case with MCP `get_case`.
 2) Reproduce steps with Vibium MCP and identify mismatch points.
+   - Use `BASE_URL` from `.env` as the target host for navigation and validation.
 3) Create/update page object(s) in `src/pages`.
 4) Create/update test file `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`.
 	- Use proper Playwright test structure (`test.describe` / `test`), not generic step-runner wrappers.

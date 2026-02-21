@@ -53,6 +53,7 @@ At completion, return:
 - Do not copy full TestRail raw payloads into output; include only required fields.
 - Avoid brittle selectors; prefer role/label/text strategies before CSS fallback.
 - Keep retries minimal and deterministic.
+- Use `BASE_URL` from `.env` for browser navigation in Playwright flows; do not hardcode hosts in generated assets.
 
 ## MCP Tool Availability
 Use this fallback matrix when MCP tools are unavailable:

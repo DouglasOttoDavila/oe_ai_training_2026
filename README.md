@@ -188,6 +188,9 @@ The CLI can use environment variables, with defaults in [src/jira-to-testrail/ty
 - `TESTRAIL_SECTION_ID` (used when section MCP tools are unavailable)
 - `TESTRAIL_TYPE_ID` (used for `type_id` on case creation)
 
+Playwright generation/test execution uses:
+- `BASE_URL` (required target host for generated Playwright navigation in TestRail->Playwright flows)
+
 Other values (project/section/template/type label defaults) are currently hardcoded via `DEFAULTS` in `types.js`.
 
 ---

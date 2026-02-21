@@ -1,4 +1,11 @@
+import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
+
+const baseURL = process.env.BASE_URL;
+
+if (!baseURL) {
+  throw new Error('Missing BASE_URL in .env. Set BASE_URL to the target application URL before running Playwright tests.');
+}
 
 export default defineConfig({
   testDir: './tests',
@@ -13,8 +20,7 @@ export default defineConfig({
     ['html', { outputFolder: './playwright-report', open: 'never' }],
   ],
   use: {
-    // Placeholder baseURL (change later when you have an app running somewhere else)
-    baseURL: 'http://localhost:3000',
+    baseURL,
 
     headless: true,
     trace: 'on-first-retry',
