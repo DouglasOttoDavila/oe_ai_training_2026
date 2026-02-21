@@ -26,7 +26,7 @@ Create a complete, reproducible flow for this sequence:
    - label: ai-generated-oe-training-2026
 
 ## Critical Constraints
-- Do not invent tool capabilities. If something is unknown (e.g., exact MCP function names), you must discover it from local repo docs or existing MCP configuration. If not available, implement an adapter layer that can be wired once MCP details are known.
+- Do not invent tool capabilities. If something is unknown (e.g., exact MCP function names), you must discover it from local repo docs or existing MCP configuration. Document any gaps clearly.
 - Do not drop any test case. All parsed cases must be created in TestRail.
 - Preserve test case meaning, but convert to structured “Steps” format suitable for the “Test Case (Steps)” template.
 - The final solution must be runnable locally via a single command.
@@ -43,7 +43,6 @@ Create the following files in the repo (create directories if missing):
 - src/jira-to-testrail/index.ts (or index.js if the repo is JS-only)
 - src/jira-to-testrail/parsers/testcaseParser.ts
 - src/jira-to-testrail/n8n/n8nClient.ts
-- src/jira-to-testrail/testrail/testrailMcpClient.ts (adapter/wrapper around MCP)
 - src/jira-to-testrail/types.ts
 - src/jira-to-testrail/cli.ts
 - package.json scripts update: jira:testrail
@@ -130,12 +129,9 @@ Choose one approach, document it in Research, and implement consistently.
 ### TestRail MCP integration
 You must:
 - Locate how to call the TestRail MCP tool from this environment (repo docs, existing code, or MCP config).
-- Implement a testrailMcpClient wrapper with methods:
-  - findProject(projectId)
-  - findOrCreateSection(projectId, sectionName)
-  - addCase(projectId, sectionId, casePayload)
+- Call the MCP tools directly from your implementation (no wrapper/adapter layer).
 
-If MCP exact method names differ, implement a thin adapter that can be quickly swapped once you discover actual calls. Do not guess silently—document what you found and what you assumed.
+If MCP exact method names differ, document what you found and what you assumed. Do not guess silently.
 
 ### Idempotency (recommended)
 Add an option --dedupe that checks if a case with same title + references already exists in the section before creating (if feasible with MCP). If not feasible, document it.
