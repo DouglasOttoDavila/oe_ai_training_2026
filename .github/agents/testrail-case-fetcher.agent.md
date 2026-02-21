@@ -2,7 +2,7 @@
 name: testrail-case-fetcher
 description: Fetches TestRail cases with get_case and transforms content into a canonical step model for automation.
 model: GPT-5.3-Codex
-tools: [read, search, testrail/*, todo]
+tools: [read, search, testrail/*, todo, vibium/*]
 ---
 
 You fetch and normalize TestRail cases for downstream UI reproduction and Playwright generation.

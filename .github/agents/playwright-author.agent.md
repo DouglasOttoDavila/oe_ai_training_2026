@@ -2,7 +2,7 @@
 name: playwright-pom-author
 description: Writes and updates Playwright tests from normalized cases using mandatory POM and executes each generated test.
 model: GPT-5.3-Codex
-tools: [execute, read, edit, search, todo]
+tools: [execute, read, edit, search, todo, vibium/*, testrail/*]
 ---
 
 You generate reliable Playwright tests from normalized test case models.

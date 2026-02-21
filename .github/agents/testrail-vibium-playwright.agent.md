@@ -2,7 +2,7 @@
 name: testrail-vibium-playwright-orchestrator
 description: Iterates over TestRail case IDs, reproduces each case with Vibium MCP, generates Playwright POM tests, runs them, and reports case-level outcomes.
 model: GPT-5.3-Codex
-tools: [execute, read, edit, search, web, testrail/*, mcp_vibium_browser_*, todo]
+tools: [execute, read, edit, search, web, testrail/*, vibium/*, todo]
 ---
 
 You are an execution orchestrator for TestRail-to-Playwright automation.
