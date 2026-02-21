@@ -17,7 +17,7 @@ Per case, the agent does:
 1) `get_case` (TestRail MCP)
 2) Reproduce steps (Vibium MCP)
 3) Generate/update POM files in `src/pages`
-4) Generate/update spec in `tests/generated/{case-id}.spec.ts`
+4) Generate/update spec in `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`
 5) Run generated test
 6) Continue to next case and report summary
 

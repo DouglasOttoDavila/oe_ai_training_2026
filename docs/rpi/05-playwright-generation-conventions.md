@@ -4,7 +4,7 @@
 This document defines required conventions when generating Playwright tests from TestRail cases.
 
 ## File Layout
-- Generated specs: `tests/generated/{case-id}.spec.ts`
+- Generated specs: `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`
 - Page objects: `src/pages/*.page.ts`
 
 ## POM Requirement
@@ -12,6 +12,15 @@ This document defines required conventions when generating Playwright tests from
 - Generated spec files must not contain large inline locator/action blocks that belong in page objects.
 - If a page object does not exist, create one.
 - If one exists, extend it instead of duplicating behavior.
+- POM usage must not replace proper case-specific spec authoring.
+- Do not generate abstraction-only test runners that replay text steps from data structures (for example: `caseRunner`, `runGeneratedCase`, or equivalent pattern).
+- Each generated spec must explicitly represent the target case flow and assertions using standard Playwright test structure.
+
+## Generated Spec Structure (Required)
+- Include `test.describe` context for the case.
+- Include at least one test with title beginning `[C{case-id}]`.
+- Use explicit, deterministic actions and assertions mapped from the case steps.
+- Reuse page object methods for UI actions/selectors, not for hiding all test intent.
 
 ## Locator Strategy
 Use this priority order:
@@ -48,7 +57,7 @@ Example:
 
 ## Execution
 - Run each generated test immediately after writing:
-  - `npx playwright test tests/generated/{case-id}.spec.ts`
+  - `npx playwright test tests/generated/{case-id}-{readable-kebab-title}.spec.ts`
 - Capture pass/fail and first actionable error for reporting.
 
 ## Error Handling

@@ -12,14 +12,15 @@ You generate reliable Playwright tests from normalized test case models.
 
 ## Responsibilities
 - Create/update page objects in `src/pages`.
-- Create/update generated specs in `tests/generated/{case-id}.spec.ts`.
+- Create/update generated specs in `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`.
 - Use robust locator strategy and stable assertions.
 - Run generated specs immediately and capture pass/fail outcome.
 
 ## Constraints
 - POM is mandatory; do not keep large inline selectors/actions in specs.
+- Do not generate generic shared step-runner wrappers; write proper Playwright spec structure per case.
 - Keep edits minimal and scoped to the active case.
 - Do not modify unrelated test assets.
 
 ## Execution command
-- `npx playwright test tests/generated/{case-id}.spec.ts`
+- `npx playwright test tests/generated/{case-id}-{readable-kebab-title}.spec.ts`

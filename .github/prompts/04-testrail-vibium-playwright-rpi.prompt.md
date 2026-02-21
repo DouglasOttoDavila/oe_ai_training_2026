@@ -22,7 +22,8 @@ If both are provided, use `caseIds`.
    - Use Vibium MCP to navigate and reproduce steps on the target page.
    - If Vibium MCP tools are unavailable, fallback to Playwright-only reproduction and continue processing.
    - Generate/update Playwright page objects under `src/pages`.
-   - Generate/update `tests/generated/{case-id}.spec.ts`.
+   - Generate/update `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`.
+   - Generate proper Playwright specs (standard `test.describe` / `test` format), not generic shared step-runner wrappers.
    - Run the generated test immediately.
    - Record status and continue to next ID even if current case fails.
 3) Return a final batch summary with per-case outputs.

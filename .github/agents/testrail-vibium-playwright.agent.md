@@ -23,7 +23,8 @@ If both are present, `caseIds` wins.
 2. Normalize to canonical model (`title`, `preconditions`, `steps[]`, metadata).
 3. Use Vibium MCP tools to navigate and reproduce the case behavior.
 4. Generate or update page object files under `src/pages`.
-5. Generate or update case spec under `tests/generated/{case-id}.spec.ts`.
+5. Generate or update case spec under `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`.
+  - Spec must be a proper Playwright test file (`test.describe`/`test`), not a generic shared step-runner wrapper.
 6. Run the generated test and collect result.
 7. Store case result and continue.
 

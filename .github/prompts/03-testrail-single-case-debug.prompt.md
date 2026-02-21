@@ -13,7 +13,8 @@
 1) Fetch case with MCP `get_case`.
 2) Reproduce steps with Vibium MCP and identify mismatch points.
 3) Create/update page object(s) in `src/pages`.
-4) Create/update test file `tests/generated/{case-id}.spec.ts`.
+4) Create/update test file `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`.
+	- Use proper Playwright test structure (`test.describe` / `test`), not generic step-runner wrappers.
 5) Run the generated test and collect concrete failure output if it fails.
 
 ## OUTPUT FORMAT

@@ -23,9 +23,15 @@ For each case ID, execute in order:
    - capture screenshots on meaningful checkpoints and on failure
 4. Generate or update Playwright assets following repository conventions:
    - create/update page objects in `src/pages`
-   - create/update spec file in `tests/generated`
+   - create/update a self-contained spec file in `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`
 5. Run the generated test to verify the script executes.
 6. Persist a per-case result record and continue to the next case.
+
+## Playwright Spec Authoring Contract
+- Generated specs must be proper Playwright test files (`test.describe`, `test`, `test.step` as needed).
+- Each spec must be understandable and runnable on its own for the target case.
+- Do not generate generic shared step runners that execute free-form text steps (for example: `caseRunner`, `runGeneratedCase`, or similar abstraction-only wrappers).
+- Use page objects for reusable UI actions, but keep case intent explicit in each spec.
 
 ## Continuation Policy
 - Default mode is continue-on-failure.
@@ -69,8 +75,14 @@ Minimum required availability:
 - Vibium support is optional only when fallback is available.
 
 ## Naming Conventions
-- Generated spec path: `tests/generated/{case-id}.spec.ts`
+- Generated spec path: `tests/generated/{case-id}-{readable-kebab-title}.spec.ts`
 - Generated page objects: `src/pages/{feature-or-page}.page.ts`
+
+Filename rules for generated specs:
+- Keep the numeric TestRail case ID first.
+- Add a readable kebab-case title segment derived from the case title.
+- Remove unsafe filename characters.
+- Example: `tests/generated/11119-verify-page-access-load-via-navigation.spec.ts`
 
 ## Batch Determinism
 - Process IDs in the exact provided order.
