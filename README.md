@@ -53,18 +53,22 @@ For execution, prefer `.github/prompts/*` as the operational source.
 1. **Scaffold / reset baseline** (optional)
   - [.github/prompts/01-start-project.prompt.md](.github/prompts/01-start-project.prompt.md)
    - Mirror: [docs/prompts/start-project.prompt.md](docs/prompts/start-project.prompt.md)
+  - Agent: Built-in default (no custom agent selection)
 
 2. **Jira -> n8n -> TestRail** (optional, when IDs are not yet available)
   - [.github/prompts/02-jira-testrail-rpi.prompt.md](.github/prompts/02-jira-testrail-rpi.prompt.md)
    - Mirror: [docs/prompts/jira-testrail-rpi.prompt.md](docs/prompts/jira-testrail-rpi.prompt.md)
+  - Agent: [.github/agents/jira-testrail.agent.md](.github/agents/jira-testrail.agent.md)
 
 3. **Batch TestRail IDs -> Vibium -> Playwright** (main generation flow)
   - [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
    - Mirror: [docs/prompts/testrail-vibium-playwright-rpi.prompt.md](docs/prompts/testrail-vibium-playwright-rpi.prompt.md)
+  - Agent: [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 4. **Single-case debug loop**
   - [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
    - Mirror: [docs/prompts/testrail-single-case-debug.prompt.md](docs/prompts/testrail-single-case-debug.prompt.md)
+  - Agent: [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 ### Agent catalog
 - Jira response -> TestRail case creator:
@@ -101,10 +105,14 @@ For execution, prefer `.github/prompts/*` as the operational source.
 ### Step 1 (optional): Initialize workspace baseline
 Prompt:
 - [.github/prompts/01-start-project.prompt.md](.github/prompts/01-start-project.prompt.md)
+Agent:
+- Built-in default (no custom agent selection)
 
 ### Step 2: Generate TestRail cases from Jira
 Prompt:
 - [.github/prompts/02-jira-testrail-rpi.prompt.md](.github/prompts/02-jira-testrail-rpi.prompt.md)
+Agent:
+- [.github/agents/jira-testrail.agent.md](.github/agents/jira-testrail.agent.md)
 
 Input example:
 ```text
@@ -122,6 +130,8 @@ Output artifact:
 ### Step 3: Generate and run Playwright tests from created case IDs
 Prompt:
 - [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
+Agent:
+- [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 Input mode A (manual list):
 ```text
@@ -141,6 +151,8 @@ Expected outputs:
 ### Step 4: Fix any failed case one-by-one
 Prompt:
 - [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
+Agent:
+- [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 Input example:
 ```text
@@ -152,9 +164,11 @@ caseId: C12346
 ### Runbook B — Start directly from existing TestRail case IDs
 
 1) Run [.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md](.github/prompts/04-testrail-vibium-playwright-rpi.prompt.md)
+  - Agent: [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 2) Pass `caseIds` or `sourceInteractionRef`
 3) Review generated assets in `src/pages` and `tests/generated`
 4) Re-run failures with [.github/prompts/03-testrail-single-case-debug.prompt.md](.github/prompts/03-testrail-single-case-debug.prompt.md)
+  - Agent: [.github/agents/testrail-vibium-playwright.agent.md](.github/agents/testrail-vibium-playwright.agent.md)
 
 ---
 
