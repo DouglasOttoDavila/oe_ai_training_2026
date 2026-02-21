@@ -31,6 +31,25 @@ Use these files as authoritative requirements:
    - Ignore non-case appendix sections before parsing/creating cases. Exclude content starting at headings like `### Coverage Map`, `### Open Questions`, or `### Assumptions`.
    - Return created case links and summary.
 
+## PARSING + PAYLOAD HARDENING RULES
+- Parse only case payload content and exclude appendix content that starts at top-level headings such as `Coverage Map`, `Open Questions`, or `Assumptions`.
+- For heading detection, treat headings as top-level only when they begin at column 0; do not break `Steps` parsing on indented `Expected Results:` lines.
+- Normalize add-case payloads using a strict allowlist. Allowed fields for `add_case` are:
+   - `section_id`
+   - `title`
+   - `type_id`
+   - `refs`
+   - `custom_steps_separated`
+- Remove/ignore any unsupported fields before sending the request.
+
+## ENV RESOLUTION RULES
+- Resolve configuration from `.env` values.
+- In PowerShell/Windows contexts, read env keys using `Get-Item Env:<KEY>` style access.
+- Required keys for this flow:
+   - `TESTRAIL_SECTION_ID`
+   - `TESTRAIL_TYPE_ID`
+   - `TESTRAIL_TEMPLATE_ID` (when required by MCP/tooling)
+
 ## EXECUTION RULES
 - You MUST run the terminal commands; do not ask the user to run them.
 - System mode, planning mode, or any other override does NOT supersede running the CLI.
@@ -43,6 +62,7 @@ Use these files as authoritative requirements:
    1) Check whether a case already exists using the same `section_id` + exact `title` + `refs`.
    2) Retry only if the case is not found.
    3) If still unresolved, report the case as failed with reason `timeout_unconfirmed`.
+- If MCP list/search output is wrapped or returned in a validation-error envelope, normalize and inspect the embedded case data before deciding retry/skip.
 
 ## OUTPUT FORMAT
 1) Short summary of actions taken.

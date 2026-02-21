@@ -11,3 +11,10 @@ Versioned prompts live here.
 	- Agent: [.github/agents/testrail-vibium-playwright.agent.md](../.github/agents/testrail-vibium-playwright.agent.md)
 - [.github/prompts/03-testrail-single-case-debug.prompt.md](../.github/prompts/03-testrail-single-case-debug.prompt.md)
 	- Agent: [.github/agents/testrail-vibium-playwright.agent.md](../.github/agents/testrail-vibium-playwright.agent.md)
+
+## Global reliability constraints
+- For Jira -> n8n -> TestRail runs, follow strict controls in:
+	- [docs/rpi/01-research.md](../docs/rpi/01-research.md)
+	- [docs/rpi/02-plan.md](../docs/rpi/02-plan.md)
+	- [docs/rpi/03-implement.md](../docs/rpi/03-implement.md)
+- These controls include fresh CLI-first execution, appendix exclusion, payload allowlist safety, verify-before-retry idempotency, Jira-only refs, and safe logging.

@@ -34,6 +34,8 @@ If both are present, `caseIds` wins.
 - Keep generated code aligned with repo style and Playwright POM conventions.
 - Use `BASE_URL` from `.env` for navigation target host; do not hardcode hosts in generated assets.
 - Do not log secrets or full raw payloads.
+- If MCP responses arrive in wrapped validation/error envelopes, normalize embedded data before deciding case failure.
+- Keep reporting payload-safe: include IDs, titles, statuses, and concise reasons only.
 
 ## Result format
 Return:

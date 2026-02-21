@@ -44,9 +44,22 @@
   - Throw a parse error; report failure and exit non-zero.
 - Parsing failures (agent):
   - Record which chunk failed; continue parsing others; report failed count.
+- Appendix handling:
+  - Stop case parsing at top-level appendix headings (`Coverage Map`, `Open Questions`, `Assumptions`).
+  - Ignore all trailing appendix text for TestRail payload generation.
 - TestRail creation failures (agent):
   - Continue with remaining cases; report failures in summary.
   - Exit non-zero if any failures occurred.
+  - On timeout/ambiguous transport failure, verify-before-retry (same section + exact title + refs) with max 2 retries and backoff.
+  - If existence cannot be confirmed after bounded retries, mark `timeout_unconfirmed`.
+  - If list/search MCP responses are wrapped in validation envelopes, normalize embedded data before concluding failure.
+
+## Preflight checks
+- Run `npm run jira:testrail -- --jira-id {JIRA_ID}` before reading any prior response directories/files.
+- Resolve `.env` config keys before add-case operations.
+- For PowerShell/Windows shells, read env keys with `Get-Item Env:<KEY>` style access.
+- Enforce add-case payload allowlist (`section_id`, `title`, `type_id`, `refs`, `custom_steps_separated`) and strip unknown fields.
+- Enforce `refs={JIRA_ID}` only.
 
 ## Observability
 - Structured logs using JSON lines (`level`, `message`, `jiraId`, `counts`).

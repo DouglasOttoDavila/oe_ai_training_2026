@@ -36,6 +36,8 @@ If both are provided, use `caseIds`.
 - Use `BASE_URL` from `.env` for navigation target host; avoid hardcoded hosts in generated code.
 - For responsive UI states, selectors must handle link/button variants and avoid blind `.first()` on role locators when hidden duplicates are possible.
 - If running in fallback mode, include `evidenceSource: playwright-fallback` in the case result.
+- If MCP responses are wrapped in validation/error envelopes, normalize embedded data before reporting missing/failed cases.
+- Report concise, structured outputs with IDs/counts only; avoid raw payload dumps.
 
 ## OUTPUT FORMAT
 1) Short summary.

@@ -55,6 +55,11 @@ Error message is shown
 - Assumption: n8n returns a plain-text response containing all test cases.
 - Assumption: The TestRail template supports steps with action + expected.
 
+## Environment resolution policy
+- Source runtime configuration from `.env`.
+- On PowerShell/Windows shells, resolve values with `Get-Item Env:<KEY>` access style.
+- Required keys for case creation: `TESTRAIL_SECTION_ID`, `TESTRAIL_TYPE_ID`, `TESTRAIL_TEMPLATE_ID` (when required by the MCP tool schema).
+
 ## Agent parsing approach for the output field
 ### Delimiter rules
 - Test cases are separated by a line containing only `---` (optional surrounding whitespace).
@@ -88,6 +93,7 @@ Heading disambiguation:
   - `### Open Questions`
   - `### Assumptions`
 - Ignore all subsequent appendix content for case creation payloads.
+- Appendix exclusion has precedence over all other parsing rules.
 
 ### Missing sections (agent)
 - Missing title: generate `Untitled test case {n}` and log a warning.
@@ -116,6 +122,26 @@ This keeps the meaning without guessing per-step expectations.
 - Template -> Test Case (Steps)
 - Section -> AI-Generated TCs
 - Project -> 25
+
+### Add-case schema safety rule
+- Before each `add_case` call, build payload from an allowlist only.
+- Allowed fields:
+  - `section_id`
+  - `title`
+  - `type_id`
+  - `refs`
+  - `custom_steps_separated`
+- Remove unsupported properties to avoid tool schema rejections.
+
+### Transport ambiguity + idempotency
+- On timeout or ambiguous transport failures (for example remote disconnect), perform verify-before-retry:
+  1. check same `section_id` + exact `title` + `refs`,
+  2. retry only when not found,
+  3. after bounded retries, mark unresolved as `timeout_unconfirmed`.
+
+### MCP wrapper/validation fallback
+- Some MCP responses may be wrapped in validation/error envelopes while still containing usable data.
+- When this occurs, normalize and inspect embedded case arrays for idempotency checks instead of failing immediately.
 
 Example custom_steps_separated payload:
 ```json

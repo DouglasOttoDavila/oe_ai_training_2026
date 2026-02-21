@@ -18,6 +18,11 @@
 	- Use proper Playwright test structure (`test.describe` / `test`), not generic step-runner wrappers.
 5) Run the generated test and collect concrete failure output if it fails.
 
+## EXECUTION CONSTRAINTS
+- Do not log secrets or full raw TestRail payloads; report only required fields and IDs.
+- Use deterministic, concise failure reasons and explicit next actions.
+- If MCP tool output comes wrapped in validation/error envelopes, normalize embedded case data before failing.
+
 ## OUTPUT FORMAT
 1) Summary of case execution.
 2) Files changed.

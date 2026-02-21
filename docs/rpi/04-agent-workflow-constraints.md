@@ -3,6 +3,12 @@
 ## Goal
 Define the mandatory execution contract for generating and validating Playwright tests from existing TestRail case IDs.
 
+Cross-flow alignment note:
+- For Jira -> n8n -> TestRail reliability controls (fresh CLI-first execution, payload allowlist safety, idempotent retries, Jira-only refs, and safe logging), follow:
+   - [01-research.md](01-research.md)
+   - [02-plan.md](02-plan.md)
+   - [03-implement.md](03-implement.md)
+
 ## Accepted Inputs
 - `caseIds`: explicit list of TestRail case IDs (manual entry).
 - `sourceInteractionRef`: reference to a previous interaction output that already contains generated case IDs.

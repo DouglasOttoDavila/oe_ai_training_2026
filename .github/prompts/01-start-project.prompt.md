@@ -73,6 +73,7 @@ Create a sample smoke test if none exists:
 - Prefer deterministic edits: show diffs or clearly describe what changed.
 - Keep everything minimal—no extra frameworks, no linting, no prettier, no Husky.
 - Ensure the project runs `npm test` without errors (if there is no app at baseURL, the smoke test should not hard-fail; handle gracefully by using `page.setContent()` to assert something, OR use a robust check that doesn't require a live server).
+- Preserve and do not weaken Jira->TestRail reliability controls defined in [.github/prompts/02-jira-testrail-rpi.prompt.md](.github/prompts/02-jira-testrail-rpi.prompt.md).
 
 ## OUTPUT FORMAT
 1) A short summary of actions taken.

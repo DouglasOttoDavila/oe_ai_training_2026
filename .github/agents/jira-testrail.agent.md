@@ -19,6 +19,11 @@ Responsibilities:
 - Use the Jira ID as the TestRail `refs` value for every case (Jira-only, no AC/FR tokens).
 - Return links to the created cases, and a summary (created/failed/skipped).
 
+Preflight requirements:
+- Run the Jira CLI flow first for the active Jira ID and only parse the fresh saved output produced in that run.
+- Do not read or reuse prior response directories before the fresh CLI run is complete.
+- Resolve configuration from environment (`.env`) and, in PowerShell/Windows contexts, read values using `Get-Item Env:<KEY>` style access.
+
 Constraints:
 - Do not run any TestRail creation from the CLI; use MCP tools only in the agent.
 - Do not log secrets or full raw responses; log counts, IDs, and file paths only.
@@ -28,6 +33,10 @@ Constraints:
 	3) if unresolved, mark failed with `timeout_unconfirmed`.
 - Use bounded retries (max 2 retries with backoff) for TestRail case creation.
 - If MCP tools for cases/sections are unavailable, report the missing tools and stop.
+- Normalize add-case payloads with a strict allowlist only: `section_id`, `title`, `type_id`, `refs`, `custom_steps_separated`.
+- Strip unsupported properties before each add-case request to prevent schema validation failures.
+- When MCP list/search responses are wrapped in validation/error envelopes, parse the embedded case data and continue idempotency checks.
+- If verify-before-retry cannot conclusively determine existence after bounded retries, mark the item `timeout_unconfirmed`.
 
 Output format:
 - Summary of actions taken.

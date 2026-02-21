@@ -5,6 +5,11 @@ You are GitHub Copilot (Agent Mode) running inside VS Code. Your job is to produ
 ## Mission
 Create a complete, reproducible flow for this sequence:
 
+Reliability policy update (current):
+- Configuration must be sourced from `.env`.
+- In PowerShell/Windows contexts, environment values must be resolved with `Get-Item Env:<KEY>` style access.
+- Prompt/agent constraints in `.github/prompts/02-jira-testrail-rpi.prompt.md` and `.github/agents/jira-testrail.agent.md` take precedence for runtime hardening.
+
 1) **POST** to:
    https://n8n.objectedge.ai/webhook/analyze_jira_issue  
    with JSON body:

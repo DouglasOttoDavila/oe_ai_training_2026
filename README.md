@@ -115,6 +115,15 @@ CLI used by this flow:
 npm run jira:testrail -- --jira-id QAT-114
 ```
 
+Hardening rules for this step:
+- Run the CLI first for the active Jira ID before listing/reading previous response directories.
+- Use only the freshly generated `response.txt` from the current run for parsing and case creation.
+- Exclude appendix content (`Coverage Map`, `Open Questions`, `Assumptions`) from case payload generation.
+- Use strict `add_case` payload allowlist only: `section_id`, `title`, `type_id`, `refs`, `custom_steps_separated`.
+- Always set `refs` to Jira ID only (for example `QAT-114`), never AC/FR tokens.
+- On add-case timeout/ambiguous transport failures, perform verify-before-retry idempotency and mark unresolved as `timeout_unconfirmed`.
+- Do not log full raw n8n/TestRail payloads; log counts/IDs/file paths only.
+
 Output artifact:
 - `data/n8n/{JIRA_ID}/{timestamp}/response.txt`
 
@@ -192,6 +201,13 @@ Playwright generation/test execution uses:
 - `BASE_URL` (required target host for generated Playwright navigation in TestRail->Playwright flows)
 
 Other values (project/section/template/type label defaults) are currently hardcoded via `DEFAULTS` in `types.js`.
+
+PowerShell/Windows environment access:
+- Resolve `.env` values using `Get-Item Env:<KEY>` style access when running in PowerShell.
+- Recommended keys for Jira->TestRail flow:
+  - `TESTRAIL_SECTION_ID`
+  - `TESTRAIL_TYPE_ID`
+  - `TESTRAIL_TEMPLATE_ID` (if required by MCP/tool schema)
 
 ---
 

@@ -21,3 +21,5 @@ For each provided case ID:
 - Preserve original case order.
 - Do not fabricate domain details not present in case text.
 - Keep output compact and structured for direct handoff to generator agents.
+- If MCP responses are wrapped in validation/error envelopes, normalize embedded case data before reporting retrieval failure.
+- Do not emit full raw case payloads; return only normalized fields required downstream.

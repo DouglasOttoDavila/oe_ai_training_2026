@@ -69,6 +69,7 @@ Example:
 ## Error Handling
 - If generation succeeds but execution fails, keep files and mark case `failed` with reason.
 - If a case cannot be translated (missing steps/context), create a minimal pending spec and mark `skipped` with rationale.
+- Keep failure reporting payload-safe: include IDs and concise reasons, not full raw external payload dumps.
 
 ## Style Alignment
 - Follow existing repo TypeScript/Playwright style.
